@@ -15,6 +15,17 @@ a {
     font-weight: normal;
 }
 
+.clear {
+    clear: both;
+}
+
+.floatLeft {
+    float: left;
+}
+.floatRight {
+    float: right;
+}
+
 h1 img {
     height: 35px;
     vertical-align: middle;
@@ -118,10 +129,12 @@ h1 img {
     background-color: #7ed2ec;
     margin-bottom: 0;
     color: #ffffff;
+    padding-bottom: 0.5em;
+    padding-top: 0.5em;
 
 }
-#submit .content form > label:nth-child(3) {
-    margin-top: 1.5em;
+#submit .content form > label:nth-child(4) {
+    margin-top: 1.2em;
 
 }
 #submit > div.content.ui-content.ui-body-a > form > div.ui-btn.ui-input-btn.ui-corner-all.ui-shadow > input {
@@ -136,5 +149,37 @@ h1 img {
 #submit > div.content.ui-content.ui-body-a > form > div {
     margin-top: 0;
 }
+
+.footerBtn div p{
+    font-size: 1.2em;
+    margin-bottom: 0.8em;
+
+}
+
+#map-canvas {
+    border-radius: 50% 50%;
+    height: 15em;
+    width: 70%;
+    margin: 1em auto;
+
+}
+
+#parcours .footerBtn a {
+    color: #ffffff;
+}
+
+.footerBtn div.vitesse {
+    width: 38%;
+}
+.footerBtn div.camera {
+    width: 23%;
+    border-left: 1px solid white;
+    border-right: 1px solid white;
+}
+.footerBtn div.distance {
+    width: 38%;
+}
+
+
 
 

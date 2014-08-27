@@ -22,6 +22,8 @@
 
     <script src="assets/js/jquery-1.11.1.min.js"></script>
     <script src="assets/js/jquery.mobile-1.4.3.min.js"></script>
+    <script src="assets/js/script.js"></script>
+    <script src="assets/js/app.js"></script>
 
     <link rel="stylesheet" href="assets/css/gomobility.css">
     <link rel="stylesheet" href="assets/css/jquery.mobile.structure-1.4.3.min.css">
@@ -116,36 +118,48 @@
 
             <h3 class="textCenter ">ON VA OÙ ?</h3>
 
-            <form class="ui-grid-a textCenter">
+            <form class="ui-grid-a textCenter" action="#parcours">
 
                 <label for="depart">Départ</label>
-                <input type="text" data-clear-btn="true" name="depart" id="depart" value="" placeholder="Placeholder">
+                <input type="text" data-clear-btn="true" name="depart" id="depart" value="" placeholder="Lieu dit, rue, monument">
+                <a href="#"><i class="fa fa-crosshairs"></i> Ma position</a>
 
                 <label for="arrivee">Arrivée</label>
                 <input type="text" data-clear-btn="true" name="arrivee" id="arrivee" value="" placeholder="Placeholder">
+
+                <h3 class="textCenter borderBtm">TYPE DE PARCOURS</h3>
+
+
+                <select name="typeParcours" id="typeParcours">
+                    <option value="">Pas de préférence</option>
+                    <option value="rush">Touristique</option>
+                    <option value="express">Sportif</option>
+                    <option value="overnight">Go to work</option>
+                </select>
+
 
                 <h3 class="textCenter borderBtm">MODE DE TRANSPORT</h3>
 
                 <fieldset data-role="controlgroup" data-type="horizontal" class="ui-grid-a borderBtm">
                     <div class="ui-block-a">
-                        <input type="radio" name="radio-choice-h-2" id="radio-choice-h-2a" value="WALKING" checked="checked">
-                        <label for="radio-choice-h-2a"><i class="fa fa-bus fa-2x"></i></label>
+                        <input type="radio" name="transport" id="transport1" value="WALKING" checked="checked">
+                        <label for="transport1"><i class="fa fa-male fa-2x"></i></label>
                     </div>
                     <div class="ui-block-b">
-                        <input type="radio" name="radio-choice-h-2" id="radio-choice-h-2b" value="BICYCLING">
-                        <label for="radio-choice-h-2b"><i class="fa fa-bus fa-2x"></i></label>
+                        <input type="radio" name="transport" id="transport2" value="BICYCLING">
+                        <label for="transport2"><i class="fa fa-bicycle fa-2x"></i></label>
                     </div>
                     <div class="ui-block-c">
-                        <input type="radio" name="radio-choice-h-2" id="radio-choice-h-2c" value="TRANSIT">
-                        <label for="radio-choice-h-2c"><i class="fa fa-bus fa-2x"></i></label>
+                        <input type="radio" name="transport" id="transport3" value="TRANSIT">
+                        <label for="transport3"><i class="fa fa-bus fa-2x"></i></label>
                     </div>
                     <div class="ui-block-d">
-                        <input type="radio" name="radio-choice-h-2" id="radio-choice-h-2d" value="DRIVING">
-                        <label for="radio-choice-h-2d"><i class="fa fa-bus fa-2x"></i></label>
+                        <input type="radio" name="transport" id="transport4" value="DRIVING">
+                        <label for="transport4"><i class="fa fa-car fa-2x"></i></label>
                     </div>
                 </fieldset>
 
-                <input type="submit" class="submit" value="Rechercher">
+                <a href="#parcours" id="submitParcours" data-transition="slide"  class="ui-btn">Rechercher</a>
 
             </form>
 
@@ -165,6 +179,38 @@
         <div data-role="content" data-theme="a" class="content">
 
             <p>Search</p>
+
+        </div>
+    </div>
+    <!-- **************************** FIN PAGE RECHERCHE PARCOURS **************************** -->
+
+
+    <!-- **************************** PAGE AFFICHAGE PARCOURS **************************** -->
+    <div data-role="page" data-theme="a" id="parcours">
+        <div data-role="header" data-position="inline">
+            <a href="#submit" data-transition="slide" data-direction="reverse" class="ui-btn ui-icon-delete ui-btn-icon-notext"></a>
+            <h1>Go Mobility</h1>
+        </div>
+        <script type="text/javascript"
+                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD1ruG9PaUssg06qR5pAKoKi0fk6Va6Gz0">
+        </script>
+
+
+        <div data-role="content" data-theme="a" class="content">
+
+            <h3 class="textCenter">Itinéraire</h3>
+
+            <div id="map-canvas" ></div>
+
+
+        </div>
+
+        <div data-role="footer" data-position="fixed">
+            <div class="footerBtn textCenter">
+                <div class="floatLeft vitesse"><p>13 km/h</p></div>
+                <a href="#"><div class="floatLeft camera"> <p><i class="fa fa-camera fa-lg"></i></p></div></a>
+                <div class="floatRight distance"> <p><i class="fa fa-location-arrow fa-lg"></i> 13 km</p></div>
+            </div>
 
         </div>
     </div>
