@@ -1,28 +1,108 @@
 body {
-    font-family: "Arial", sans-serif;
+    font-family: "ralewaylight","Arial", sans-serif;
+}
+
+.ui-header h1.ui-title {
+    font-family: "ralewaysemibold", "Arial", sans-serif;
+    font-size: 1.5em;
+    width: 100%;
+    text-align: center;
+    margin: 0;
+    padding-top: 0.2em;
+    padding-bottom: 0.2em;
+
+}
+
+.ui-footer h1.ui-title {
+    font-family: "ralewayextralight", "Arial", sans-serif;
+
+
+}
+
+.content {
+    background-color: transparent;
 }
 
 a {
     font-weight: normal;
 }
 
-#home {
-    background: url("../img/bg.png") no-repeat bottom center;
+h1 img {
+    height: 35px;
+    vertical-align: middle;
+    margin-right: 0.2em;
+    padding-bottom: 0.1em;
+}
+
+
+.textCenter {
+    text-align: center;
+}
+
+#login {
+    background: url("../img/bg_login.png") no-repeat bottom center;
     background-size: 100%;
-
-
 }
 
-#home .content {
-    background-color: transparent;
-}
-
-#home a.fbBtn {
+#login a.fbBtn {
     background-color: #3c5a96;
     margin-top: 1.5em;
 }
-#home a {
+#login a {
 
     margin-top: 1em;
     margin-bottom: 1.5em;
 }
+
+
+#home {
+    background: url("../img/bg_home.jpg") no-repeat bottom center;
+    background-size: 100%;
+}
+
+
+#home .btnChoix {
+    margin-bottom: 2em;
+}
+
+#home .btnHome:first-child {
+    border-right: 2px solid white;
+}
+
+#home .btnHome:last-child {
+    border-left: 2px solid white;
+}
+
+#home a.btnHome {
+    font-family: "ralewayextralight","Arial", sans-serif;
+    font-size: 1.1em;
+    background-color: #7DD1EB;
+    color: #ffffff;
+    background: repeating-linear-gradient(
+        -45deg,
+        #7DD1EB,
+        #7DD1EB 5px,
+        #87daf4 5px,
+        #87daf4 7px
+    );
+}
+#home a.btnHome span{
+    font-size: 0.75em;
+}
+
+#home .btnHome p {
+
+    margin-top: 0.5em;
+}
+#home .btnHome img {
+    width: 5em;
+    margin-top: 1em;
+}
+
+#home h3 {
+    margin-top: 0;
+}
+
+
+
+
