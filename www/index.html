@@ -1,0 +1,87 @@
+<!DOCTYPE html><!--HTML5 doctype-->
+<html>
+<head>
+	<title>Your New Application</title>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0" />
+	<style type="text/css">
+		/* Prevent copy paste for all elements except text fields */
+		*  { -webkit-user-select:none; -webkit-tap-highlight-color:rgba(255, 255, 255, 0); }
+		input, textarea  { -webkit-user-select:text; }
+		body { background-color:white; color:black }
+	</style>
+	<script src='intelxdk.js'></script>
+	<script type="text/javascript">
+		/* Intel native bridge is available */
+		var onDeviceReady=function(){
+		//hide splash screen
+		intel.xdk.device.hideSplashScreen();
+		};
+		document.addEventListener("intel.xdk.device.ready",onDeviceReady,false);
+	</script>
+
+
+    <link rel="stylesheet" href="assets/css/gomobility.css">
+    <link rel="stylesheet" href="assets/css/jquery.mobile.structure-1.4.3.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <script src="assets/js/jquery-1.11.1.min.js"></script>
+    <script src="assets/js/jquery.mobile-1.4.3.min.js"></script>
+
+
+</head>
+<body>
+
+    <!-- **************************** HOME PAGE **************************** -->
+    <div data-role="page" data-theme="a" id="home">
+        <div data-role="header" data-position="inline">
+            <h1>Go Mobility</h1>
+        </div>
+        <div data-role="content" data-theme="a" class="content">
+
+            <a class = "fbBtn" href="#" data-role="button">Se connecter avec facebook</a>
+            <a href="#connexion" data-transition="slide"     data-role="button">Connexion avec email</a>
+
+        </div>
+    </div>
+    <!-- **************************** FIN HOME PAGE **************************** -->
+
+
+    <!-- **************************** PAGE CONNEXION EMAIL **************************** -->
+    <div data-role="page" data-theme="a" id="connexion">
+        <div data-role="header" data-position="inline">
+            <h1>Go Mobility</h1>
+        </div>
+        <div data-role="content" data-theme="a" class="content">
+
+            <p>Connexion</p>
+
+        </div>
+    </div>
+    <!-- **************************** FIN PAGE CONNEXION EMAIL **************************** -->
+
+
+    <!-- ****************************  PAGE **************************** -->
+    <div data-role="page" data-theme="a">
+        <div data-role="header" data-position="inline">
+            <h1>It Worked!</h1>
+        </div>
+        <div data-role="content" data-theme="a">
+
+            <p>This is content color swatch "A" and a preview of a <a href="#" class="ui-link">link</a>.</p>
+            <label for="slider1">Input slider:</label>
+            <input type="range" name="slider1" id="slider1" value="50" min="0" max="100" data-theme="a" />
+            <fieldset data-role="controlgroup"  data-type="horizontal" data-role="fieldcontain">
+                <legend>Cache settings:</legend>
+                <input type="radio" name="radio-choice-a1" id="radio-choice-a1" value="on" checked="checked" />
+                <label for="radio-choice-a1">On</label>
+                <input type="radio" name="radio-choice-a1" id="radio-choice-b1" value="off"  />
+                <label for="radio-choice-b1">Off</label>
+                <input type="radio" name="radio-choice-a1" id="radio-choice-c1" value="off"  />
+                <label for="radio-choice-c1">Off</label>
+            </fieldset>
+        </div>
+    </div>
+    <!-- ****************************  PAGE **************************** -->
+</body>
+</html>

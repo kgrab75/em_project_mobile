@@ -1,0 +1,28 @@
+body {
+    font-family: "Arial", sans-serif;
+}
+
+a {
+    font-weight: normal;
+}
+
+#home {
+    background: url("../img/bg.png") no-repeat bottom center;
+    background-size: 100%;
+
+
+}
+
+#home .content {
+    background-color: transparent;
+}
+
+#home a.fbBtn {
+    background-color: #3c5a96;
+    margin-top: 1.5em;
+}
+#home a {
+
+    margin-top: 1em;
+    margin-bottom: 1.5em;
+}
