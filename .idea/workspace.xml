@@ -25,10 +25,19 @@
     <splitter split-orientation="horizontal" split-proportion="0.5">
       <split-first>
         <leaf>
-          <file leaf-file-name="index.html" pinned="false" current="true" current-in-tab="true">
+          <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/www/index.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="61" column="55" selection-start="2433" selection-end="2433" vertical-scroll-proportion="0.7311828" vertical-offset="432" max-vertical-offset="2288">
+                <state line="147" column="42" selection-start="6465" selection-end="6465" vertical-scroll-proportion="0.6989247" vertical-offset="1832" max-vertical-offset="2880">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="fonts.css" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/www/assets/fonts/fonts.css">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="18" column="0" selection-start="504" selection-end="504" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2240">
                   <folding />
                 </state>
               </provider>
@@ -49,10 +58,10 @@
       </split-first>
       <split-second>
         <leaf>
-          <file leaf-file-name="style.css" pinned="false" current="false" current-in-tab="true">
+          <file leaf-file-name="style.css" pinned="false" current="true" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/www/assets/css/style.css">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="85" column="17" selection-start="1410" selection-end="1410" vertical-scroll-proportion="0.9010989" vertical-offset="704" max-vertical-offset="1824">
+                <state line="127" column="35" selection-start="2116" selection-end="2116" vertical-scroll-proportion="0.61538464" vertical-offset="1592" max-vertical-offset="2336">
                   <folding />
                 </state>
               </provider>
@@ -71,8 +80,8 @@
     <option name="changedFiles">
       <list>
         <option value="$PROJECT_DIR$/www/assets/js/app.js" />
-        <option value="$PROJECT_DIR$/www/assets/css/style.css" />
         <option value="$PROJECT_DIR$/www/index.html" />
+        <option value="$PROJECT_DIR$/www/assets/css/style.css" />
       </list>
     </option>
   </component>
@@ -177,6 +186,28 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="assets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Gomobility_mobile" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Gomobility_mobile" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="www" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="assets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="fonts" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -321,16 +352,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/assets/css/style.css">
+    <entry file="file://$PROJECT_DIR$/www/assets/fonts/fonts.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="85" column="17" selection-start="1410" selection-end="1410" vertical-scroll-proportion="0.9010989" vertical-offset="704" max-vertical-offset="1824">
+        <state line="18" column="0" selection-start="504" selection-end="504" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2240">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/www/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="61" column="55" selection-start="2433" selection-end="2433" vertical-scroll-proportion="0.7311828" vertical-offset="432" max-vertical-offset="2288">
+        <state line="147" column="42" selection-start="6465" selection-end="6465" vertical-scroll-proportion="0.6989247" vertical-offset="1832" max-vertical-offset="2880">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/assets/css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="127" column="35" selection-start="2116" selection-end="2116" vertical-scroll-proportion="0.61538464" vertical-offset="1592" max-vertical-offset="2336">
           <folding />
         </state>
       </provider>

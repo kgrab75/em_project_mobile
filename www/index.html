@@ -25,6 +25,8 @@
 
     <link rel="stylesheet" href="assets/css/gomobility.css">
     <link rel="stylesheet" href="assets/css/jquery.mobile.structure-1.4.3.min.css">
+    <link rel="stylesheet" href="assets/css/jquery.mobile.icons.min.css">
+    <link rel="stylesheet" href="assets/css/font-awesome.min.css">
     <link rel="stylesheet" href="assets/fonts/fonts.css">
     <link rel="stylesheet" href="assets/css/style.css">
 
@@ -112,7 +114,42 @@
         </div>
         <div data-role="content" data-theme="a" class="content">
 
-            <p>Submit</p>
+            <h3 class="textCenter ">ON VA OÙ ?</h3>
+
+            <form class="ui-grid-a textCenter">
+
+                <label for="depart">Départ</label>
+                <input type="text" data-clear-btn="true" name="depart" id="depart" value="" placeholder="Placeholder">
+
+                <label for="arrivee">Arrivée</label>
+                <input type="text" data-clear-btn="true" name="arrivee" id="arrivee" value="" placeholder="Placeholder">
+
+                <h3 class="textCenter borderBtm">MODE DE TRANSPORT</h3>
+
+                <fieldset data-role="controlgroup" data-type="horizontal" class="ui-grid-a borderBtm">
+                    <div class="ui-block-a">
+                        <input type="radio" name="radio-choice-h-2" id="radio-choice-h-2a" value="WALKING" checked="checked">
+                        <label for="radio-choice-h-2a"><i class="fa fa-bus fa-2x"></i></label>
+                    </div>
+                    <div class="ui-block-b">
+                        <input type="radio" name="radio-choice-h-2" id="radio-choice-h-2b" value="BICYCLING">
+                        <label for="radio-choice-h-2b"><i class="fa fa-bus fa-2x"></i></label>
+                    </div>
+                    <div class="ui-block-c">
+                        <input type="radio" name="radio-choice-h-2" id="radio-choice-h-2c" value="TRANSIT">
+                        <label for="radio-choice-h-2c"><i class="fa fa-bus fa-2x"></i></label>
+                    </div>
+                    <div class="ui-block-d">
+                        <input type="radio" name="radio-choice-h-2" id="radio-choice-h-2d" value="DRIVING">
+                        <label for="radio-choice-h-2d"><i class="fa fa-bus fa-2x"></i></label>
+                    </div>
+                </fieldset>
+
+                <input type="submit" class="submit" value="Rechercher">
+
+            </form>
+
+
 
         </div>
     </div>

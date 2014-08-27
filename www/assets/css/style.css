@@ -1,26 +1,14 @@
 body {
-    font-family: "ralewaylight","Arial", sans-serif;
+    font-family: "ralewaylight",Arial, sans-serif;
+    color: #646462;
 }
 
-.ui-header h1.ui-title {
-    font-family: "ralewaysemibold", "Arial", sans-serif;
-    font-size: 1.5em;
-    width: 100%;
-    text-align: center;
-    margin: 0;
-    padding-top: 0.2em;
-    padding-bottom: 0.2em;
-
+h3 {
+    font-family: "ralewayextralight",Arial, sans-serif;
 }
 
-.ui-footer h1.ui-title {
-    font-family: "ralewayextralight", "Arial", sans-serif;
-
-
-}
-
-.content {
-    background-color: transparent;
+h3:first-child {
+    margin-top: 0;
 }
 
 a {
@@ -32,6 +20,27 @@ h1 img {
     vertical-align: middle;
     margin-right: 0.2em;
     padding-bottom: 0.1em;
+}
+
+.ui-header h1.ui-title {
+    font-family: "ralewaysemibold", Arial, sans-serif;
+    font-size: 1.5em;
+    width: 100%;
+    text-align: center;
+    margin: 0;
+    padding-top: 0.2em;
+    padding-bottom: 0.2em;
+
+}
+
+.ui-footer h1.ui-title {
+    font-family: "ralewayextralight", Arial, sans-serif;
+
+
+}
+
+.content {
+    background-color: transparent;
 }
 
 
@@ -99,10 +108,33 @@ h1 img {
     margin-top: 1em;
 }
 
-#home h3 {
-    margin-top: 0;
+
+#submit .content .borderBtm {
+    padding-bottom: 0.5em;
+    border-bottom: 2px solid #b1b2b4;
 }
 
+#submit .content form > label {
+    background-color: #7ed2ec;
+    margin-bottom: 0;
+    color: #ffffff;
 
+}
+#submit .content form > label:nth-child(3) {
+    margin-top: 1.5em;
+
+}
+#submit > div.content.ui-content.ui-body-a > form > div.ui-btn.ui-input-btn.ui-corner-all.ui-shadow > input {
+    font-family: "ralewayextralight", Arial, sans-serif;
+
+}
+
+#submit .content form > fieldset > div {
+    margin-bottom: 0.8em;
+}
+
+#submit > div.content.ui-content.ui-body-a > form > div {
+    margin-top: 0;
+}
 
 
