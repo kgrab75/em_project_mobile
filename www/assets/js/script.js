@@ -11,8 +11,6 @@ $(document).bind('pageinit', function(event) {
 
     if (activePage == "parcours") {
 
-        console.log(depart);
-
         // CARTE GOOGLE MAP
 
         function initialize() {
@@ -35,7 +33,7 @@ if (activePage == "submit") {
 
         $('#submitParcours').on("tap", function(){
             depart = $('input:text[name=depart]').val();
-            return depart;
+            console.log(depart);
 
         });
 
