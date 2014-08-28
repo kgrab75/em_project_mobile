@@ -120,12 +120,12 @@ h1 img {
 }
 
 
-#submit .content .borderBtm {
+.content .borderBtm {
     padding-bottom: 0.5em;
     border-bottom: 2px solid #dbdcde;
 }
 
-#submit .content form > label {
+.content form > label {
     background-color: #7ed2ec;
     margin-bottom: 0;
     color: #ffffff;
@@ -133,7 +133,7 @@ h1 img {
     padding-top: 0.5em;
 
 }
-#submit .content form > label:nth-child(4) {
+.content .ui-controlgroup-horizontal fieldset {
     margin-top: 1.2em;
 
 }
@@ -226,10 +226,14 @@ h1 img {
 }
 
 
-#touristMenu {
+#tourismeMenu,
+#sportMenu,
+#workMenu {
     width: 7em;
 }
-#touristMenu .ui-panel-inner {
+#tourismeMenu .ui-panel-inner,
+#sportMenu .ui-panel-inner,
+#workMenu .ui-panel-inner {
     padding: 0;
 }
 

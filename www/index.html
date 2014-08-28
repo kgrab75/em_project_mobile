@@ -88,7 +88,7 @@
                     </a>
 
 
-                <a class="ui-block-b textCenter ui-shadow ui-btn ui-corner-all btnHome" href="#searchTourist"  data-transition="slide" >
+                <a class="ui-block-b textCenter ui-shadow ui-btn ui-corner-all btnHome" href="#searchTourisme"  data-transition="slide" >
                     <img src="assets/img/icon_search.png" alt="" />
                     <p>JE CHOISIS<br><span>mon parcours</span></p>
                 </a>
@@ -110,6 +110,8 @@
 
 
 
+
+
     <!-- **************************** PAGE PROPOSITION **************************** -->
     <div data-role="page" data-theme="a" id="submit">
         <div data-role="header" data-position="inline">
@@ -120,7 +122,7 @@
 
             <h3 class="textCenter ">ON VA OÙ ?</h3>
 
-            <form class="ui-grid-a textCenter" action="#parcours">
+            <form class="ui-grid-a textCenter">
 
                 <label for="arrivee">Destination</label>
                 <input type="text" data-clear-btn="true" name="arrivee" id="arrivee" value="" placeholder="Lieu dit, rue, monument...">
@@ -168,30 +170,39 @@
     <!-- **************************** PAGE PROPOSITION **************************** -->
 
 
+
+
     <!-- **************************** PAGE RECHERCHE TOURISTIQUE **************************** -->
-    <div data-role="page" data-theme="a" id="searchTourist">
+
+    <div data-role="page" data-theme="a" id="searchTourisme">
         <div data-role="header" data-position="inline">
-            <a href="#touristMenu" data-icon="gear" data-iconpos="notext">Add</a>
+            <a href="#tourismeMenu" data-icon="gear" data-iconpos="notext">Type</a>
             <h1><img src="assets/img/headLogo.png" alt=""/>Go Mobility</h1>
             <a href="#home" data-transition="slide" data-direction="reverse" class="ui-btn ui-icon-delete ui-btn-icon-notext"></a>
         </div>
         <div data-role="content" data-theme="a" class="content">
 
+            <p>Recherche touristique</p>
+
+            <form class="ui-grid-a textCenter">
+
+            </form>
+
         </div>
 
-        <div data-role="panel" data-position="left" data-position-fixed="true" data-display="overlay" data-theme="a" id="touristMenu">
+        <div data-role="panel" data-position="left" data-position-fixed="true" data-display="overlay" data-theme="a" id="tourismeMenu">
             <form class="typeForm">
 
                 <fieldset data-role="controlgroup" data-theme="a" data-type="horizontal">
 
-                    <input type="radio" name="typeParcours" id="typeParcours1" value="touristique" checked="checked">
-                    <label for="typeParcours1"><i class="fa fa-university fa-2x"></i><br/><span class="xxsText">Touristique</span></label>
+                    <input type="radio" name="typeParcoursT" id="tt1" value="tourisme" checked="checked">
+                    <label for="tt1"><i class="fa fa-university fa-2x"></i><br/><span class="xxsText">Touristique</span></label>
 
-                    <input type="radio" name="typeParcours" id="typeParcours2" value="sportif">
-                    <label for="typeParcours2"><i class="fa fa-child fa-2x"></i><br/><span class="xxsText">Sportif</span></label>
+                    <input type="radio" name="typeParcoursT" id="tt2" value="sport">
+                    <label for="tt2"><i class="fa fa-child fa-2x"></i><br/><span class="xxsText">Sportif</span></label>
 
-                    <input type="radio" name="typeParcours" id="typeParcours3" value="work">
-                    <label for="typeParcours3"><i class="fa fa-suitcase fa-2x"></i><br/><span class="xxsText">Go to work</span></label>
+                    <input type="radio" name="typeParcoursT" id="tt3" value="work">
+                    <label for="tt3"><i class="fa fa-suitcase fa-2x"></i><br/><span class="xxsText">Go to work</span></label>
 
                 </fieldset>
 
@@ -203,6 +214,114 @@
 
     </div>
     <!-- **************************** FIN PAGE RECHERCHE PARCOURS TOURISTIQUE **************************** -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- **************************** PAGE RECHERCHE SPORT **************************** -->
+
+    <div data-role="page" data-theme="a" id="searchSport">
+        <div data-role="header" data-position="inline">
+            <a href="#sportMenu" data-icon="gear" data-iconpos="notext">Type</a>
+            <h1><img src="assets/img/headLogo.png" alt=""/>Go Mobility</h1>
+            <a href="#home" data-transition="slide" data-direction="reverse" class="ui-btn ui-icon-delete ui-btn-icon-notext"></a>
+        </div>
+        <div data-role="content" data-theme="a" class="content">
+
+            <p>Recherche sport</p>
+
+            <form class="ui-grid-a textCenter">
+
+            </form>
+
+        </div>
+
+        <div data-role="panel" data-position="left" data-position-fixed="true" data-display="overlay" data-theme="a" id="sportMenu">
+            <form class="typeForm">
+
+                <fieldset data-role="controlgroup" data-theme="a" data-type="horizontal">
+
+                    <input type="radio" name="typeParcoursS" id="ts1" value="tourisme">
+                    <label for="ts1"><i class="fa fa-university fa-2x"></i><br/><span class="xxsText">Touristique</span></label>
+
+                    <input type="radio" name="typeParcoursS" id="ts2" value="sport">
+                    <label for="ts2"><i class="fa fa-child fa-2x"></i><br/><span class="xxsText">Sportif</span></label>
+
+                    <input type="radio" name="typeParcoursS" id="ts3" value="work">
+                    <label for="ts3"><i class="fa fa-suitcase fa-2x"></i><br/><span class="xxsText">Go to work</span></label>
+
+                </fieldset>
+
+            </form>
+
+            <a href="#" data-rel="close" class="ui-btn ui-shadow ui-corner-all ui-btn-b ui-mini"><i class="fa fa-close fa-2x"></i></a>
+
+        </div><!-- /panel -->
+
+    </div>
+    <!-- **************************** FIN PAGE RECHERCHE PARCOURS SPORT **************************** -->
+
+
+
+
+
+
+
+    <!-- **************************** PAGE RECHERCHE GO TO WORK **************************** -->
+    <div data-role="page" data-theme="a" id="searchWork">
+        <div data-role="header" data-position="inline">
+            <a href="#workMenu" data-icon="gear" data-iconpos="notext">Type</a>
+            <h1><img src="assets/img/headLogo.png" alt=""/>Go Mobility</h1>
+            <a href="#home" data-transition="slide" data-direction="reverse" class="ui-btn ui-icon-delete ui-btn-icon-notext"></a>
+        </div>
+        <div data-role="content" data-theme="a" class="content">
+
+            <p>Recherche go to work</p>
+
+            <form class="ui-grid-a textCenter">
+
+            </form>
+
+        </div>
+
+        <div data-role="panel" data-position="left" data-position-fixed="true" data-display="overlay" data-theme="a" id="workMenu">
+            <form class="typeForm">
+
+                <fieldset data-role="controlgroup" data-theme="a" data-type="horizontal">
+
+                    <input type="radio" name="typeParcoursW" id="tw1" value="tourisme">
+                    <label for="tw1"><i class="fa fa-university fa-2x"></i><br/><span class="xxsText">Touristique</span></label>
+
+                    <input type="radio" name="typeParcoursW" id="tw2" value="sport">
+                    <label for="tw2"><i class="fa fa-child fa-2x"></i><br/><span class="xxsText">Sportif</span></label>
+
+                    <input type="radio" name="typeParcoursW" id="tw3" value="work">
+                    <label for="tw3"><i class="fa fa-suitcase fa-2x"></i><br/><span class="xxsText">Go to work</span></label>
+
+                </fieldset>
+
+            </form>
+
+            <a href="#" data-rel="close" class="ui-btn ui-shadow ui-corner-all ui-btn-b ui-mini"><i class="fa fa-close fa-2x"></i></a>
+
+        </div><!-- /panel -->
+
+    </div>
+    <!-- **************************** FIN PAGE RECHERCHE PARCOURS GO TO WORK **************************** -->
+
+
+
+
+
 
 
     <!-- **************************** PAGE AFFICHAGE PARCOURS **************************** -->
