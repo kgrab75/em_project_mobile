@@ -20,14 +20,16 @@
 		document.addEventListener("intel.xdk.device.ready",onDeviceReady,false);
 	</script>
 
+    <link rel="stylesheet" href="assets/css/gomobility.css">
+    <link rel="stylesheet" href="assets/css/jquery.mobile.icons.min.css">
+    <link rel="stylesheet" href="assets/css/jquery.mobile.structure-1.4.3.min.css">
+
     <script src="assets/js/jquery-1.11.1.min.js"></script>
     <script src="assets/js/jquery.mobile-1.4.3.min.js"></script>
     <script src="assets/js/script.js"></script>
     <script src="assets/js/app.js"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD1ruG9PaUssg06qR5pAKoKi0fk6Va6Gz0&libraries=places&sensor=false"></script>
 
-    <link rel="stylesheet" href="assets/css/gomobility.css">
-    <link rel="stylesheet" href="assets/css/jquery.mobile.structure-1.4.3.min.css">
-    <link rel="stylesheet" href="assets/css/jquery.mobile.icons.min.css">
     <link rel="stylesheet" href="assets/css/font-awesome.min.css">
     <link rel="stylesheet" href="assets/fonts/fonts.css">
     <link rel="stylesheet" href="assets/css/style.css">
@@ -86,7 +88,7 @@
                     </a>
 
 
-                <a class="ui-block-b textCenter ui-shadow ui-btn ui-corner-all btnHome" href="#search"  data-transition="slide" >
+                <a class="ui-block-b textCenter ui-shadow ui-btn ui-corner-all btnHome" href="#searchTourist"  data-transition="slide" >
                     <img src="assets/img/icon_search.png" alt="" />
                     <p>JE CHOISIS<br><span>mon parcours</span></p>
                 </a>
@@ -120,12 +122,8 @@
 
             <form class="ui-grid-a textCenter" action="#parcours">
 
-                <label for="depart">Départ</label>
-                <input type="text" data-clear-btn="true" name="depart" id="depart" value="" placeholder="Lieu dit, rue, monument">
-                <a href="#"><i class="fa fa-crosshairs"></i> Ma position</a>
-
-                <label for="arrivee">Arrivée</label>
-                <input type="text" data-clear-btn="true" name="arrivee" id="arrivee" value="" placeholder="Placeholder">
+                <label for="arrivee">Destination</label>
+                <input type="text" data-clear-btn="true" name="arrivee" id="arrivee" value="" placeholder="Lieu dit, rue, monument...">
 
                 <h3 class="textCenter borderBtm">TYPE DE PARCOURS</h3>
 
@@ -159,7 +157,7 @@
                     </div>
                 </fieldset>
 
-                <a href="#parcours" id="submitParcours" data-transition="slide"  class="ui-btn">Rechercher</a>
+                <a href="#parcours" id="submitParcours" data-transition="slide"  class="ui-btn" >Rechercher</a>
 
             </form>
 
@@ -170,19 +168,41 @@
     <!-- **************************** PAGE PROPOSITION **************************** -->
 
 
-    <!-- **************************** PAGE RECHERCHE PARCOURS **************************** -->
-    <div data-role="page" data-theme="a" id="search">
+    <!-- **************************** PAGE RECHERCHE TOURISTIQUE **************************** -->
+    <div data-role="page" data-theme="a" id="searchTourist">
         <div data-role="header" data-position="inline">
-            <a href="#home" data-transition="slide" data-direction="reverse" class="ui-btn ui-icon-home ui-btn-icon-notext"></a>
+            <a href="#touristMenu" data-icon="gear" data-iconpos="notext">Add</a>
             <h1><img src="assets/img/headLogo.png" alt=""/>Go Mobility</h1>
+            <a href="#home" data-transition="slide" data-direction="reverse" class="ui-btn ui-icon-delete ui-btn-icon-notext"></a>
         </div>
         <div data-role="content" data-theme="a" class="content">
 
-            <p>Search</p>
-
         </div>
+
+        <div data-role="panel" data-position="left" data-position-fixed="true" data-display="overlay" data-theme="a" id="touristMenu">
+            <form class="typeForm">
+
+                <fieldset data-role="controlgroup" data-theme="a" data-type="horizontal">
+
+                    <input type="radio" name="typeParcours" id="typeParcours1" value="touristique" checked="checked">
+                    <label for="typeParcours1"><i class="fa fa-university fa-2x"></i><br/><span class="xxsText">Touristique</span></label>
+
+                    <input type="radio" name="typeParcours" id="typeParcours2" value="sportif">
+                    <label for="typeParcours2"><i class="fa fa-child fa-2x"></i><br/><span class="xxsText">Sportif</span></label>
+
+                    <input type="radio" name="typeParcours" id="typeParcours3" value="work">
+                    <label for="typeParcours3"><i class="fa fa-suitcase fa-2x"></i><br/><span class="xxsText">Go to work</span></label>
+
+                </fieldset>
+
+            </form>
+
+            <a href="#" data-rel="close" class="ui-btn ui-shadow ui-corner-all ui-btn-b ui-mini"><i class="fa fa-close fa-2x"></i></a>
+
+        </div><!-- /panel -->
+
     </div>
-    <!-- **************************** FIN PAGE RECHERCHE PARCOURS **************************** -->
+    <!-- **************************** FIN PAGE RECHERCHE PARCOURS TOURISTIQUE **************************** -->
 
 
     <!-- **************************** PAGE AFFICHAGE PARCOURS **************************** -->
@@ -191,17 +211,26 @@
             <a href="#submit" data-transition="slide" data-direction="reverse" class="ui-btn ui-icon-delete ui-btn-icon-notext"></a>
             <h1><img src="assets/img/headLogo.png" alt=""/>Go Mobility</h1>
         </div>
-        <script type="text/javascript"
-                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD1ruG9PaUssg06qR5pAKoKi0fk6Va6Gz0">
-        </script>
+
 
 
         <div data-role="content" data-theme="a" class="content">
 
             <h3 class="textCenter">Itinéraire</h3>
 
-            <div id="map-canvas" ></div>
+            <div class="map textCenter ui-grid-a">
+                <div class="ui-block-a" style="width: 15%;">Son</div>
+                <div class="ui-block-b textCenter" style="width: 70%;" id="map-canvas" ></div>
+                <div class="ui-block-c" style="width: 15%;">Pause</div>
+            </div>
+            <div class="infosMap ui-grid-a textCenter">
+                <div class="ui-block-a" style="width: 15%;"></div>
+                <div class="ui-block-b" id="dirParcours"></div>
+                <div class="ui-block-c" style="width: 15%;"></div>
 
+            </div>
+
+            <div id="map-directions"></div>
 
         </div>
 
@@ -209,7 +238,7 @@
             <div class="footerBtn textCenter">
                 <div class="floatLeft vitesse"><p>13 km/h</p></div>
                 <a href="#"><div class="floatLeft camera"> <p><i class="fa fa-camera fa-lg"></i></p></div></a>
-                <div class="floatRight distance"> <p><i class="fa fa-location-arrow fa-lg"></i> 13 km</p></div>
+                <div class="floatRight distance" id="distParcours"></div>
             </div>
 
         </div>

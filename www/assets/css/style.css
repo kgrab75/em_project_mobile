@@ -122,7 +122,7 @@ h1 img {
 
 #submit .content .borderBtm {
     padding-bottom: 0.5em;
-    border-bottom: 2px solid #b1b2b4;
+    border-bottom: 2px solid #dbdcde;
 }
 
 #submit .content form > label {
@@ -150,6 +150,10 @@ h1 img {
     margin-top: 0;
 }
 
+#submit > div.content.ui-content.ui-body-a > form > div > a {
+    background-color: #7DD1EB;
+}
+
 .footerBtn div p{
     font-size: 1.2em;
     margin-bottom: 0.8em;
@@ -157,10 +161,27 @@ h1 img {
 }
 
 #map-canvas {
-    border-radius: 50% 50%;
-    height: 15em;
+    height: 0;
     width: 70%;
-    margin: 1em auto;
+    padding: 0;
+
+
+}
+
+.infosMap {
+    margin-top: 1em;
+}
+
+#dirParcours {
+    width: 69%;
+}
+#dirParcours p{
+    color: #7DD1EB;
+    font-size: 2.2em;
+    margin-top: 0.2em;
+    margin-bottom: 0.2em;
+    border-right: 2px solid #CECFD1;
+    border-left: 2px solid #CECFD1;
 
 }
 
@@ -180,6 +201,35 @@ h1 img {
     width: 38%;
 }
 
+.typeForm fieldset {
+    margin-top: 0;
+}
+
+.typeForm  fieldset .ui-radio {
+    display: block;
+    clear: both;
+    padding-right: 0;
+    width: 100%;
+    border-right-width: 1px;
+
+}
+
+.ui-controlgroup-horizontal .ui-controlgroup-controls .ui-btn {
+    border-right-width: 1px;
+    border-bottom-width:0 ;
+    text-align: center;
+
+}
+.typeForm  fieldset label span.xxsText {
+    font-size: 0.6em;
+    font-family: "ralewaylight", Arial, sans-serif;
+}
 
 
+#touristMenu {
+    width: 7em;
+}
+#touristMenu .ui-panel-inner {
+    padding: 0;
+}
 
