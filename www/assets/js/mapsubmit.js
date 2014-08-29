@@ -106,7 +106,7 @@ $(document).on('pagebeforeshow', '#parcours', function(e, data){
                 console.log( "Something went wrong: ", error );
             },
             {
-                timeout: (5 * 1000),
+                timeout: (15 * 1000),
                 maximumAge: (1000 * 60 * 15),
                 enableHighAccuracy: true
             }
