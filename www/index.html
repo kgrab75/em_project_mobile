@@ -28,7 +28,7 @@
     <script src="assets/js/jquery.mobile-1.4.3.min.js"></script>
     <script src="assets/js/script.js"></script>
     <script src="assets/js/app.js"></script>
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD1ruG9PaUssg06qR5pAKoKi0fk6Va6Gz0&libraries=places&sensor=false"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD1ruG9PaUssg06qR5pAKoKi0fk6Va6Gz0&libraries=places"></script>
 
     <link rel="stylesheet" href="assets/css/font-awesome.min.css">
     <link rel="stylesheet" href="assets/fonts/fonts.css">
@@ -132,9 +132,12 @@
 
                 <select name="typeParcours" id="typeParcours">
                     <option value="">Pas de préférence</option>
-                    <option value="rush">Touristique</option>
-                    <option value="express">Sportif</option>
-                    <option value="overnight">Go to work</option>
+                    <option value="gastronomique">Gastronomique</option>
+                    <option value="nature">Nature</option>
+                    <option value="historique">Historique **</option>
+                    <option value="enonomique">Economique **</option>
+                    <option value="sport">Sportif **</option>
+                    <option value="work">Go to work **</option>
                 </select>
 
 
@@ -172,6 +175,49 @@
 
 
 
+    <!-- **************************** PAGE AFFICHAGE PARCOURS PROPOSITION **************************** -->
+    <div data-role="page" data-theme="a" id="parcours">
+        <div data-role="header" data-position="inline">
+            <a href="#submit" data-transition="slide" data-direction="reverse" class="ui-btn ui-icon-delete ui-btn-icon-notext"></a>
+            <h1><img src="assets/img/headLogo.png" alt=""/>Go Mobility</h1>
+        </div>
+
+
+        <script src="assets/js/mapsubmit.js"></script>
+
+
+        <div data-role="content" data-theme="a" class="content">
+
+            <h3 class="textCenter">Itinéraire</h3>
+
+            <div class="map textCenter ui-grid-a">
+                <div class="ui-block-a" style="width: 15%;">Son</div>
+                <div class="ui-block-b textCenter" style="width: 70%;" id="map-canvas" ></div>
+                <div class="ui-block-c" style="width: 15%;">Pause</div>
+            </div>
+            <div class="infosMap ui-grid-a textCenter">
+                <div class="ui-block-a" style="width: 15%;"></div>
+                <div class="ui-block-b" id="dirParcours"></div>
+                <div class="ui-block-c" style="width: 15%;"></div>
+
+            </div>
+
+            <div id="map-directions"></div>
+
+        </div>
+
+        <div data-role="footer" data-position="fixed">
+            <div class="footerBtn textCenter">
+                <div class="floatLeft vitesse"><p>13 km/h</p></div>
+                <a href="#"><div class="floatLeft camera"> <p><i class="fa fa-camera fa-lg"></i></p></div></a>
+                <div class="floatRight distance" id="distParcours"></div>
+            </div>
+
+        </div>
+    </div>
+    <!-- **************************** FIN PAGE RECHERCHE PARCOURS PROPOSITION **************************** -->
+
+
     <!-- **************************** PAGE RECHERCHE TOURISTIQUE **************************** -->
 
     <div data-role="page" data-theme="a" id="searchTourisme">
@@ -187,6 +233,8 @@
             <form class="ui-grid-a textCenter">
 
             </form>
+
+            <a href="#parcoursSearch">Map</a>
 
         </div>
 
@@ -214,13 +262,6 @@
 
     </div>
     <!-- **************************** FIN PAGE RECHERCHE PARCOURS TOURISTIQUE **************************** -->
-
-
-
-
-
-
-
 
 
 
@@ -324,13 +365,15 @@
 
 
 
-    <!-- **************************** PAGE AFFICHAGE PARCOURS **************************** -->
-    <div data-role="page" data-theme="a" id="parcours">
+    <!-- **************************** PAGE AFFICHAGE PARCOURS PROPOSITION **************************** -->
+    <div data-role="page" data-theme="a" id="parcoursSearch">
         <div data-role="header" data-position="inline">
-            <a href="#submit" data-transition="slide" data-direction="reverse" class="ui-btn ui-icon-delete ui-btn-icon-notext"></a>
+            <a href="#searchTourisme" data-transition="slide" data-direction="reverse" class="ui-btn ui-icon-delete ui-btn-icon-notext"></a>
             <h1><img src="assets/img/headLogo.png" alt=""/>Go Mobility</h1>
         </div>
 
+
+        <!-- <script src="assets/js/mapsubmit.js"></script> -->
 
 
         <div data-role="content" data-theme="a" class="content">
@@ -339,17 +382,17 @@
 
             <div class="map textCenter ui-grid-a">
                 <div class="ui-block-a" style="width: 15%;">Son</div>
-                <div class="ui-block-b textCenter" style="width: 70%;" id="map-canvas" ></div>
+                <div class="ui-block-b textCenter" style="width: 70%;" id="mapSearch-canvas" ></div>
                 <div class="ui-block-c" style="width: 15%;">Pause</div>
             </div>
             <div class="infosMap ui-grid-a textCenter">
                 <div class="ui-block-a" style="width: 15%;"></div>
-                <div class="ui-block-b" id="dirParcours"></div>
+                <div class="ui-block-b" id="dirParcoursSearch"></div>
                 <div class="ui-block-c" style="width: 15%;"></div>
 
             </div>
 
-            <div id="map-directions"></div>
+            <div id="mapSearch-directions"></div>
 
         </div>
 
@@ -357,12 +400,12 @@
             <div class="footerBtn textCenter">
                 <div class="floatLeft vitesse"><p>13 km/h</p></div>
                 <a href="#"><div class="floatLeft camera"> <p><i class="fa fa-camera fa-lg"></i></p></div></a>
-                <div class="floatRight distance" id="distParcours"></div>
+                <div class="floatRight distance" id="distParcoursSearch"></div>
             </div>
 
         </div>
     </div>
-    <!-- **************************** FIN PAGE RECHERCHE PARCOURS **************************** -->
+    <!-- **************************** FIN PAGE RECHERCHE PARCOURS PROPOSITION **************************** -->
 
 </body>
 </html>
