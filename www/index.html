@@ -178,7 +178,7 @@
     <!-- **************************** PAGE AFFICHAGE PARCOURS PROPOSITION **************************** -->
     <div data-role="page" data-theme="a" id="parcours">
         <div data-role="header" data-position="inline">
-            <a href="#submit" data-transition="slide" data-direction="reverse" class="ui-btn ui-icon-delete ui-btn-icon-notext"></a>
+            <a href="#submit" data-transition="slide" data-direction="reverse" class="ui-btn ui-icon-delete ui-btn-icon-notext" id="stopGeoloc"></a>
             <h1><img src="assets/img/headLogo.png" alt=""/>Go Mobility</h1>
         </div>
 
@@ -193,7 +193,7 @@
             <div class="map textCenter ui-grid-a">
                 <div class="ui-block-a" style="width: 15%;">Son</div>
                 <div class="ui-block-b textCenter" style="width: 70%;" id="map-canvas" ></div>
-                <div class="ui-block-c" style="width: 15%;">Pause</div>
+                <div class="ui-block-c" style="width: 15%;"><a href="#" >Pause</a></div>
             </div>
             <div class="infosMap ui-grid-a textCenter">
                 <div class="ui-block-a" style="width: 15%;"></div>
@@ -215,7 +215,7 @@
 
         </div>
     </div>
-    <!-- **************************** FIN PAGE RECHERCHE PARCOURS PROPOSITION **************************** -->
+    <!-- **************************** FIN PAGE AFFICHAGE PARCOURS PROPOSITION **************************** -->
 
 
     <!-- **************************** PAGE RECHERCHE TOURISTIQUE **************************** -->
