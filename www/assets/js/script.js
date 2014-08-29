@@ -1,5 +1,6 @@
 $(document).bind('pageinit', function(event) {
 
+
     var  map, depart, transport, arrivee;
 
 
