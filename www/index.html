@@ -228,13 +228,123 @@
         </div>
         <div data-role="content" data-theme="a" class="content">
 
-            <p>Recherche touristique</p>
 
-            <form class="ui-grid-a textCenter">
+
+            <form class="ui-grid-a textCenter" id="tourismeForm">
+
+                <h3 class="textCenter">MODE DE TRANSPORT</h3>
+
+                <fieldset data-role="controlgroup" data-type="horizontal" class="ui-grid-a borderBtm">
+
+                    <div class="ui-block-a">
+                        <input type="radio" name="transportT" id="transportT1" value="WALKING" checked="checked">
+                        <label for="transportT1"><i class="fa fa-male fa-2x"></i></label>
+                    </div>
+                    <div class="ui-block-b">
+                        <input type="radio" name="transportT" id="transportT2" value="BICYCLING">
+                        <label for="transportT2"><i class="fa fa-bicycle fa-2x"></i></label>
+                    </div>
+                    <div class="ui-block-c">
+                        <input type="radio" name="transportT" id="transportT3" value="TRANSIT">
+                        <label for="transportT3"><i class="fa fa-bus fa-2x"></i></label>
+                    </div>
+                    <div class="ui-block-d">
+                        <input type="radio" name="transportT" id="transportT4" value="DRIVING">
+                        <label for="transportT4"><i class="fa fa-car fa-2x"></i></label>
+                    </div>
+                </fieldset>
+
+
+                <h3 class="textCenter borderBtm">TYPE DE PARCOURS</h3>
+
+                <fieldset data-role="controlgroup" class="borderBtm">
+                    <div class="ui-grid-a">
+                        <div class="ui-block-a">
+                            <input type="radio" name="parcoursTypeT" id="parcoursTypeT1" value="Economique" checked="checked">
+                            <label for="parcoursTypeT1"><i class="fa fa fa-usd fa-2x"></i></label>
+                        </div>
+                        <div class="ui-block-b">
+                            <input type="radio" name="parcoursTypeT" id="parcoursTypeT2" value="Historique">
+                            <label for="parcoursTypeT2"><i class="fa fa fa-university fa-2x"></i></label>
+                        </div>
+                    </div>
+                    <div class="ui-grid-a">
+                        <div class="ui-block-a">
+                            <input type="radio" name="parcoursTypeT" id="parcoursTypeT3" value="Gastronomique">
+                            <label for="parcoursTypeT3"><i class="fa fa-cutlery fa-2x"></i></label>
+                        </div>
+                        <div class="ui-block-b">
+                            <input type="radio" name="parcoursTypeT" id="parcoursTypeT4" value="Nature">
+                            <label for="parcoursTypeT4"><i class="fa fa fa-tree fa-2x"></i></label>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <h3 class="textCenter">DUREE DU PARCOURS</h3>
+
+                <div data-role="rangeslider" data-mini="true" class="borderBtm">
+
+                    <input type="range" name="range-1a" id="range-1a" min="1" max="10" value="4">
+
+                    <input type="range" name="range-1b" id="range-1b" min="1" max="10" value="8">
+                </div>
+
+
+                <h3 class="textCenter">DISTANCE DU PARCOURS</h3>
+
+                <div data-role="rangeslider" data-mini="true" class="borderBtm">
+
+                    <input type="range" name="distanceMinT" id="distanceMinT" min="1" max="10" value="4">
+
+                    <input type="range" name="distanceMaxT" id="distanceMaxT" min="1" max="10" value="8">
+                </div>
+
+
+
+                <h3 class="textCenter">DIFFICULTES</h3>
+
+                <fieldset data-role="controlgroup">
+                    <div class="ui-grid-b">
+                        <div class="ui-block-a">
+                            <input type="radio" name="difficulteT" id="difficulteT1" value="Economique" checked="checked">
+                            <label for="difficulteT1"><i class="fa fa fa-usd fa-2x"></i></label>
+                        </div>
+                        <div class="ui-block-b">
+                            <input type="radio" name="difficulteT" id="difficulteT2" value="Historique">
+                            <label for="difficulteT2"><i class="fa fa fa-university fa-2x"></i></label>
+                        </div>
+                        <div class="ui-block-c">
+                            <input type="radio" name="difficulteT" id="difficulteT3" value="Historique">
+                            <label for="difficulteT3"><i class="fa fa fa-university fa-2x"></i></label>
+                        </div>
+                    </div>
+
+                </fieldset>
+
+
+                <h3 class="textCenter">LOISIRS PAYANTS</h3>
+
+                <fieldset data-role="controlgroup">
+                    <div class="ui-grid-a">
+                        <div class="ui-block-a">
+                            <input type="radio" name="loisirsT" id="loisirsT1" value="Oui" checked="checked">
+                            <label for="loisirsT1">Oui</label>
+                        </div>
+                        <div class="ui-block-b">
+                            <input type="radio" name="loisirsT" id="loisirsT2" value="Non">
+                            <label for="loisirsT2">Non</label>
+                        </div>
+                    </div>
+
+                </fieldset>
+
+
+
+                <a href="#parcoursSearch" id="submitTourisme" data-transition="slide"  class="ui-btn" >Rechercher</a>
 
             </form>
 
-            <a href="#parcoursSearch">Map</a>
+
 
         </div>
 
@@ -365,10 +475,10 @@
 
 
 
-    <!-- **************************** PAGE AFFICHAGE PARCOURS PROPOSITION **************************** -->
+    <!-- **************************** PAGE AFFICHAGE PARCOURS SEARCH **************************** -->
     <div data-role="page" data-theme="a" id="parcoursSearch">
         <div data-role="header" data-position="inline">
-            <a href="#searchTourisme" data-transition="slide" data-direction="reverse" class="ui-btn ui-icon-delete ui-btn-icon-notext"></a>
+            <a href="#searchTourisme" data-transition="slide" data-direction="reverse" class="ui-btn ui-icon-delete ui-btn-icon-notext" id="returnBtn"></a>
             <h1><img src="assets/img/headLogo.png" alt=""/>Go Mobility</h1>
         </div>
 
@@ -405,7 +515,8 @@
 
         </div>
     </div>
-    <!-- **************************** FIN PAGE RECHERCHE PARCOURS PROPOSITION **************************** -->
+    <!-- **************************** FIN PAGE RECHERCHE PARCOURS SEARCH **************************** -->
 
 </body>
+
 </html>
