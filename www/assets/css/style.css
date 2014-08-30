@@ -238,4 +238,11 @@ h1 img {
 }
 
 
+.level i {
+    display: inline;
+}
+.level label {
+    padding: 8px;
+}
+
 

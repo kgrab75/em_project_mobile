@@ -1,5 +1,5 @@
 <!DOCTYPE html><!--HTML5 doctype-->
-<html>
+<html ng-app="mobile">
 <head>
 	<title>Your New Application</title>
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
@@ -30,6 +30,13 @@
     <script src="assets/js/app.js"></script>
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD1ruG9PaUssg06qR5pAKoKi0fk6Va6Gz0&libraries=places"></script>
 
+    <script src="assets/js/angular.min.js"></script>
+
+    <link href="assets/css/angular.rangeSlider.css" rel="stylesheet">
+    <script src="assets/js/angular.rangeSlider.js"></script>
+
+    <script src="assets/js/ang_app.js"></script>
+
     <link rel="stylesheet" href="assets/css/font-awesome.min.css">
     <link rel="stylesheet" href="assets/fonts/fonts.css">
     <link rel="stylesheet" href="assets/css/style.css">
@@ -37,7 +44,7 @@
 
 
 </head>
-<body>
+<body ng-controller="mobileController as mobile">
 
     <!-- **************************** PAGE CONNEXION **************************** -->
     <div data-role="page" data-theme="a" id="login">
@@ -232,24 +239,27 @@
 
             <form class="ui-grid-a textCenter" id="tourismeForm">
 
-                <h3 class="textCenter">MODE DE TRANSPORT</h3>
+
+                <div>{{post.transportT}}</div>
+
+                <h3 class="textCenter" ng-click="debbug()">MODE DE TRANSPORT</h3>
 
                 <fieldset data-role="controlgroup" data-type="horizontal" class="ui-grid-a borderBtm">
 
                     <div class="ui-block-a">
-                        <input type="radio" name="transportT" id="transportT1" value="WALKING" checked="checked">
+                        <input type="radio" name="transportT" id="transportT1" value="WALKING" checked="checked" ng-model="post.transportT">
                         <label for="transportT1"><i class="fa fa-male fa-2x"></i></label>
                     </div>
                     <div class="ui-block-b">
-                        <input type="radio" name="transportT" id="transportT2" value="BICYCLING">
+                        <input type="radio" name="transportT" id="transportT2" value="BICYCLING" ng-model="post.transportT">
                         <label for="transportT2"><i class="fa fa-bicycle fa-2x"></i></label>
                     </div>
                     <div class="ui-block-c">
-                        <input type="radio" name="transportT" id="transportT3" value="TRANSIT">
+                        <input type="radio" name="transportT" id="transportT3" value="TRANSIT" ng-model="post.transportT">
                         <label for="transportT3"><i class="fa fa-bus fa-2x"></i></label>
                     </div>
                     <div class="ui-block-d">
-                        <input type="radio" name="transportT" id="transportT4" value="DRIVING">
+                        <input type="radio" name="transportT" id="transportT4" value="DRIVING" ng-model="post.transportT">
                         <label for="transportT4"><i class="fa fa-car fa-2x"></i></label>
                     </div>
                 </fieldset>
@@ -260,62 +270,49 @@
                 <fieldset data-role="controlgroup" class="borderBtm">
                     <div class="ui-grid-a">
                         <div class="ui-block-a">
-                            <input type="radio" name="parcoursTypeT" id="parcoursTypeT1" value="Economique" checked="checked">
-                            <label for="parcoursTypeT1"><i class="fa fa fa-usd fa-2x"></i></label>
+                            <input type="radio" name="parcoursTypeT" id="parcoursTypeT1" value="economique" checked="checked" ng-model="post.parcoursTypeT">
+                            <label for="parcoursTypeT1"><i class="fa fa-usd fa-2x"></i></label>
                         </div>
                         <div class="ui-block-b">
-                            <input type="radio" name="parcoursTypeT" id="parcoursTypeT2" value="Historique">
-                            <label for="parcoursTypeT2"><i class="fa fa fa-university fa-2x"></i></label>
+                            <input type="radio" name="parcoursTypeT" id="parcoursTypeT2" value="historique" ng-model="post.parcoursTypeT">
+                            <label for="parcoursTypeT2"><i class="fa fa-university fa-2x"></i></label>
                         </div>
                     </div>
                     <div class="ui-grid-a">
                         <div class="ui-block-a">
-                            <input type="radio" name="parcoursTypeT" id="parcoursTypeT3" value="Gastronomique">
+                            <input type="radio" name="parcoursTypeT" id="parcoursTypeT3" value="gastronomique" ng-model="post.parcoursTypeT">
                             <label for="parcoursTypeT3"><i class="fa fa-cutlery fa-2x"></i></label>
                         </div>
                         <div class="ui-block-b">
-                            <input type="radio" name="parcoursTypeT" id="parcoursTypeT4" value="Nature">
-                            <label for="parcoursTypeT4"><i class="fa fa fa-tree fa-2x"></i></label>
+                            <input type="radio" name="parcoursTypeT" id="parcoursTypeT4" value="nature" ng-model="post.parcoursTypeT">
+                            <label for="parcoursTypeT4"><i class="fa fa-tree fa-2x"></i></label>
                         </div>
                     </div>
                 </fieldset>
 
                 <h3 class="textCenter">DUREE DU PARCOURS</h3>
 
-                <div data-role="rangeslider" data-mini="true" class="borderBtm">
-
-                    <input type="range" name="range-1a" id="range-1a" min="1" max="10" value="4">
-
-                    <input type="range" name="range-1b" id="range-1b" min="1" max="10" value="8">
-                </div>
-
+                <div range-slider min="0" max="10" model-min="post.duree.min" model-max="post.duree.max" prevent-equal-min-max="true" prefix=" H"></div>
 
                 <h3 class="textCenter">DISTANCE DU PARCOURS</h3>
 
-                <div data-role="rangeslider" data-mini="true" class="borderBtm">
-
-                    <input type="range" name="distanceMinT" id="distanceMinT" min="1" max="10" value="4">
-
-                    <input type="range" name="distanceMaxT" id="distanceMaxT" min="1" max="10" value="8">
-                </div>
-
-
+                <div range-slider min="0" max="10" model-min="post.distance.min" model-max="post.distance.max" prevent-equal-min-max="true" prefix=" Km"></div>
 
                 <h3 class="textCenter">DIFFICULTES</h3>
 
                 <fieldset data-role="controlgroup">
-                    <div class="ui-grid-b">
+                    <div class="ui-grid-b level">
                         <div class="ui-block-a">
-                            <input type="radio" name="difficulteT" id="difficulteT1" value="Economique" checked="checked">
-                            <label for="difficulteT1"><i class="fa fa fa-usd fa-2x"></i></label>
+                            <input type="radio" name="difficulteT" id="difficulteT1" value="1" checked="checked" ng-model="post.difficulteT">
+                            <label for="difficulteT1"><i class="fa fa-star fa-2x"></i></label>
                         </div>
                         <div class="ui-block-b">
-                            <input type="radio" name="difficulteT" id="difficulteT2" value="Historique">
-                            <label for="difficulteT2"><i class="fa fa fa-university fa-2x"></i></label>
+                            <input type="radio" name="difficulteT" id="difficulteT2" value="2" ng-model="post.difficulteT">
+                            <label for="difficulteT2"><i class="fa fa-star fa-2x"></i><i class="fa fa-star fa-2x"></i></i></label>
                         </div>
                         <div class="ui-block-c">
-                            <input type="radio" name="difficulteT" id="difficulteT3" value="Historique">
-                            <label for="difficulteT3"><i class="fa fa fa-university fa-2x"></i></label>
+                            <input type="radio" name="difficulteT" id="difficulteT3" value="3" ng-model="post.difficulteT">
+                            <label for="difficulteT3"><i class="fa fa-star fa-2x"></i><i class="fa fa-star fa-2x"></i><i class="fa fa-star fa-2x"></i></label>
                         </div>
                     </div>
 
@@ -327,11 +324,11 @@
                 <fieldset data-role="controlgroup">
                     <div class="ui-grid-a">
                         <div class="ui-block-a">
-                            <input type="radio" name="loisirsT" id="loisirsT1" value="Oui" checked="checked">
+                            <input type="radio" name="payant" id="loisirsT1" value="1" checked="checked"  ng-model="post.payant">
                             <label for="loisirsT1">Oui</label>
                         </div>
                         <div class="ui-block-b">
-                            <input type="radio" name="loisirsT" id="loisirsT2" value="Non">
+                            <input type="radio" name="payant" id="loisirsT2" value="0"  ng-model="post.payant">
                             <label for="loisirsT2">Non</label>
                         </div>
                     </div>
@@ -340,7 +337,7 @@
 
 
 
-                <a href="#parcoursSearch" id="submitTourisme" data-transition="slide"  class="ui-btn" >Rechercher</a>
+                <a href="#parcoursSearch" id="submitTourisme" data-transition="slide"  class="ui-btn" ng-click="search()">Rechercher</a>
 
             </form>
 
@@ -504,6 +501,34 @@
 
             <div id="mapSearch-directions"></div>
 
+        </div>
+
+        <div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>GES</th>
+                        <th>Distance</th>
+                        <th>Durée</th>
+                        <th>Transport</th>
+                        <th>Difficulty</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr ng-repeat="(keyData, resultat) in resultats">
+                        <th>{{keyData+1}}</th>
+                        <th>{{resultat.ges}}</th>
+                        <th>{{resultat.distance}}</th>
+                        <th>{{resultat.duree}}</th>
+                        <th>{{resultat.transport}}</th>
+                        <th>{{resultat.difficulty}}</th>
+
+                    </tr>
+                </tbody>
+
+            </table>
         </div>
 
         <div data-role="footer" data-position="fixed">

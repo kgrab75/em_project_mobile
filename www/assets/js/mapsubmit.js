@@ -142,7 +142,7 @@ $(document).on('pagebeforeshow', '#parcours', function(e, data){
              if(distanceRadius > 5000) { distanceRadius = 5000; }
              */
 
-            var locationPlace = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+            var locationPlace = new google.maps.LatLng(latitude, longitude);
 
             console.log(typeParcours);
 
@@ -288,6 +288,14 @@ $(document).on('pagebeforeshow', '#parcours', function(e, data){
 
 
 
+            },
+            function (error){
+                console.warn('ERROR(' + error.code + '): ' + error.message);
+            },
+            {
+                enableHighAccuracy: false,
+                timeout: 15000,
+                maximumAge: 0
             }
         );
 
