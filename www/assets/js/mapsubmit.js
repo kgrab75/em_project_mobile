@@ -3,8 +3,8 @@ var markerImg = "assets/img/location.png";
 var markerA = "assets/img/markerA.png";
 var arrivee, transport, typeParcours;
 
-
-
+var markersArray = [];
+var i = 0;
 
  $("#stopGeoloc").click(function(){
 
@@ -77,127 +77,6 @@ $(document).on('pagebeforeshow', '#parcours', function(e, data){
 
         }
 
-        // REQUETE GOOGLE MAPS
-
-        var directionsService = new google.maps.DirectionsService(),
-            directionsDisplay = new google.maps.DirectionsRenderer({suppressMarkers: true});
-
-        var origin = new google.maps.LatLng(latitude, longitude);
-
-        travel = {
-            origin : origin,
-            destination : arrivee,
-            travelMode : google.maps.DirectionsTravelMode[transport]
-
-        }
-
-        //map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
-
-
-        directionsDisplay.setMap(map);
-        //$("#map-directions").empty();
-
-        //directionsDisplay.setPanel(document.getElementById("map-directions"));
-
-        directionsService.route(travel, function(result, status) {
-            if (status === google.maps.DirectionsStatus.OK) {
-                directionsDisplay.setDirections(result);
-
-                var distanceDirection = result.routes[0].legs[0].steps[0].distance.text;
-                var iconDirection = result.routes[0].legs[0].steps[0].maneuver;
-                var distanceTotal = result.routes[0].legs[0].distance.text;
-
-
-                //AFFICHAGE DES ICONES EN FONCTION DE DU PROCHAIN CHANGEMENT ITINERAIRE
-                if( iconDirection == "turn-sharp-left" || iconDirection == "roundabout-left" || iconDirection == "uturn-left" || iconDirection == "turn-slight-left" || iconDirection == "turn-left" || iconDirection == "fork-left" || iconDirection == "ramp-left" || iconDirection == "keep-left" ){
-                    iconDirection = "<i class = 'fa fa-arrow-circle-o-left'></i> ";
-                }
-                else if( iconDirection == "roundabout-right" || iconDirection == "uturn-right" || iconDirection == "turn-slight-right" || iconDirection == "keep-right" || iconDirection == "turn-sharp-right" || iconDirection == "ramp-right" || iconDirection == "turn-right" || iconDirection == "fork-right"){
-                    iconDirection ="<i class = 'fa fa-arrow-circle-o-right'></i> ";
-                }else {
-                    iconDirection ="<i class = 'fa fa-arrow-circle-o-up'></i> ";
-                }
-
-
-                $("#dirParcours").html("<p>" + iconDirection + distanceDirection + "</p>");
-                $("#distParcours").html("<p><i class='fa fa-location-arrow fa-lg'></i> " + distanceTotal + "</p>");
-            }
-
-
-
-
-            // REQUETE AFFICHAGE POINTS STRATEGIQUES
-
-            var endLocation = new google.maps.LatLng(result.routes[0].legs[0].end_location.k, result.routes[0].legs[0].end_location.B);
-
-            var arrivalMarker = new google.maps.Marker({
-                map: map,
-                icon: markerA,
-                position: endLocation
-            });
-            /*
-             // Récupération de la distance du trajet radius autour de l'arrivée
-             var distanceRadius = result.routes[0].legs[0].distance.value;
-             // Si la distance du trajet est supérieur à 10 km on fait un radius de 10 km autour du point d'arrivée
-             if(distanceRadius > 5000) { distanceRadius = 5000; }
-             */
-
-            var locationPlace = new google.maps.LatLng(latitude, longitude);
-
-            console.log(typeParcours);
-
-            if(typeParcours === "gastronomique") {
-
-                var requestPlace = {
-                    location:  locationPlace,
-                    radius: 3000,
-                    types: ['restaurant']
-                };
-
-                var markerImg = "assets/img/markerR.png";
-                showPlaces();
-            }
-
-
-
-
-            // AFFICHAGE DES POINTS D'INTERETS
-
-            function showPlaces() {
-
-
-                infowindow = new google.maps.InfoWindow();
-                var service = new google.maps.places.PlacesService(map);
-                service.nearbySearch(requestPlace, callback);
-
-
-                function callback(results, status) {
-                    if (status == google.maps.places.PlacesServiceStatus.OK) {
-                        for (var i = 0; i < results.length; i++) {
-                            createMarker(results[i]);
-                        }
-                    }
-                }
-
-                function createMarker(place) {
-                    var placeLoc = place.geometry.location;
-                    var marker = new google.maps.Marker({
-                        map: map,
-                        position: place.geometry.location,
-                        icon: markerImg
-                    });
-
-                    google.maps.event.addListener(marker, 'click', function() {
-                        infowindow.setContent(place.name);
-                        infowindow.open(map, this);
-                    });
-                }
-            }
-
-
-
-        });
-
 
     }
 
@@ -245,11 +124,76 @@ $(document).on('pagebeforeshow', '#parcours', function(e, data){
 
                 // PARCOURS GOOGLE MAP
 
+                // REQUETE GOOGLE MAPS
+
+                var directionsService = new google.maps.DirectionsService(),
+                    directionsDisplay = new google.maps.DirectionsRenderer({suppressMarkers: true});
+
+                var origin = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+
+                travel = {
+                    origin : origin,
+                    destination : arrivee,
+                    travelMode : google.maps.DirectionsTravelMode[transport]
+
+                }
+
+                //map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+
+
+                directionsDisplay.setMap(map);
+                //$("#map-directions").empty();
+
+                //directionsDisplay.setPanel(document.getElementById("map-directions"));
+
+                directionsService.route(travel, function(result, status) {
+                    if (status === google.maps.DirectionsStatus.OK) {
+                        directionsDisplay.setDirections(result);
+/*
+                        var distanceDirection = result.routes[0].legs[0].steps[0].distance.text;
+                        var iconDirection = result.routes[0].legs[0].steps[0].maneuver;
+                        var distanceTotal = result.routes[0].legs[0].distance.text;
+
+
+                        //AFFICHAGE DES ICONES EN FONCTION DE DU PROCHAIN CHANGEMENT ITINERAIRE
+                        if( iconDirection == "turn-sharp-left" || iconDirection == "roundabout-left" || iconDirection == "uturn-left" || iconDirection == "turn-slight-left" || iconDirection == "turn-left" || iconDirection == "fork-left" || iconDirection == "ramp-left" || iconDirection == "keep-left" ){
+                            iconDirection = "<i class = 'fa fa-arrow-circle-o-left'></i> ";
+                        }
+                        else if( iconDirection == "roundabout-right" || iconDirection == "uturn-right" || iconDirection == "turn-slight-right" || iconDirection == "keep-right" || iconDirection == "turn-sharp-right" || iconDirection == "ramp-right" || iconDirection == "turn-right" || iconDirection == "fork-right"){
+                            iconDirection ="<i class = 'fa fa-arrow-circle-o-right'></i> ";
+                        }else {
+                            iconDirection ="<i class = 'fa fa-arrow-circle-o-up'></i> ";
+                        }
+
+
+                        $("#dirParcours").html("<p>" + iconDirection + distanceDirection + "</p>");
+                        $("#distParcours").html("<p><i class='fa fa-location-arrow fa-lg'></i> " + distanceTotal + "</p>");
+
+                        */
+                    }
+
+
+
+
+                    // REQUETE AFFICHAGE POINTS STRATEGIQUES
+
+                    var endLocation = new google.maps.LatLng(result.routes[0].legs[0].end_location.k, result.routes[0].legs[0].end_location.B);
+
+                    var arrivalMarker = new google.maps.Marker({
+                        map: map,
+                        icon: markerA,
+                        position: endLocation
+                    });
+                    /*
+                     // Récupération de la distance du trajet radius autour de l'arrivée
+                     var distanceRadius = result.routes[0].legs[0].distance.value;
+                     // Si la distance du trajet est supérieur à 10 km on fait un radius de 10 km autour du point d'arrivée
+                     if(distanceRadius > 5000) { distanceRadius = 5000; }
+                     */
 
             },
             function( error ){
                 console.log( "Something went wrong: ", error );
-                console.warn('ERROR(' + err.code + '): ' + err.message);
             },
             {
                 timeout: (15 * 1000),
@@ -285,17 +229,91 @@ $(document).on('pagebeforeshow', '#parcours', function(e, data){
                 );
 
 
+                var locationPlace = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+
+                console.log(typeParcours);
+
+                if(typeParcours === "gastronomique") {
+
+                    var requestPlace = {
+                        location:  locationPlace,
+                        radius: 1000,
+                        types: ['restaurant']
+                    };
+
+                    var markerR = "assets/img/markerR.png";
+
+                    // CONDITIONS POUR MISE A JOUR DES RESTAURANTS MOINS FREQUENTE
+                    if(i == 0){
+                        showPlaces();
+                    }
+
+                    i++;
+                    if(i == 60){
+                        i = 0;
+                    }
+
+                }
 
 
 
-            },
-            function (error){
-                console.warn('ERROR(' + error.code + '): ' + error.message);
-            },
-            {
-                enableHighAccuracy: false,
-                timeout: 15000,
-                maximumAge: 0
+
+                // AFFICHAGE DES POINTS D'INTERETS
+
+                function showPlaces() {
+
+                    function clearOverlays() {
+                        for (var i = 0; i < markersArray.length; i++ ) {
+                            markersArray[i].setMap(null);
+                        }
+
+                    }
+
+
+                    clearOverlays();
+
+
+                    infowindow = new google.maps.InfoWindow();
+                    var service = new google.maps.places.PlacesService(map);
+                    service.nearbySearch(requestPlace, callback);
+
+
+                    function callback(results, status) {
+                        if (status == google.maps.places.PlacesServiceStatus.OK) {
+                            for (var i = 0; i < results.length; i++) {
+                                createMarker(results[i]);
+                            }
+                        }
+                    }
+
+                    function createMarker(place) {
+                        var placeLoc = place.geometry.location;
+                        var marker = new google.maps.Marker({
+                            map: map,
+                            position: place.geometry.location,
+                            icon: markerR
+
+                        });
+
+                        // Récupération des markers pour suppression au prochaine update
+                        markersArray.push(marker);
+
+
+                        google.maps.event.addListener(marker, 'click', function() {
+                            infowindow.setContent(place.name);
+                            infowindow.open(map, this);
+                        });
+                    }
+                }
+
+
+
+
+            });
+
+
+
+
             }
         );
 
