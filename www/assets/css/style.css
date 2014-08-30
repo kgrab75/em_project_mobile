@@ -190,9 +190,22 @@ h1 img {
     color: #ffffff;
 }
 
-.footerBtn div.vitesse {
+.footerBtn fieldset.chkbox {
     width: 38%;
 }
+
+#parcours > div.ui-footer.ui-bar-inherit.ui-footer-fixed.slideup fieldset.chkbox > div,
+#parcours > div.ui-footer.ui-bar-inherit.ui-footer-fixed.slideup > div > fieldset > div > div{
+    width: 100%;
+}
+
+#parcours > div.ui-footer.ui-bar-inherit.ui-footer-fixed.slideup > div > fieldset.chkbox > div > div > label {
+    width: 60%;
+    font-size: 1em;
+    text-align: center;
+    border: 0;
+}
+
 .footerBtn div.camera {
     width: 23%;
     border-left: 1px solid white;

@@ -10,18 +10,9 @@ $(document).bind('pageinit', function(event) {
 
 
 
-
-
     // ************************ PAGE PARCOURS ************************
 
     if (activePage == "parcours") {
-
-
-        $(document).on('pageshow', '#parcours', function(){
-            var content_width = $.mobile.activePage.find("div#map-canvas:visible:visible").outerWidth();
-            $('#map-canvas').css({'height':content_width});
-
-        });
 
 
 

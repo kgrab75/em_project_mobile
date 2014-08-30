@@ -5,21 +5,38 @@ var arrivee, transport, typeParcours;
 
 var markersArray = [];
 var i = 0;
-
- $("#stopGeoloc").click(function(){
-
-     // Stop géolocalisation
-
-
- });
+var positionTimer;
 
 
 
 $(document).on('pagebeforeshow', '#parcours', function(e, data){
 
+
+    $("#pauseWatch").click(function(){
+
+        var status = $("#stopGeolocation").is(":checked");
+        // Stop géolocalisation
+        if(status == false){
+            navigator.geolocation.clearWatch(positionTimer);
+        } else {
+            console.log("Reprise de la géolocalisation");
+            setLocation();
+        }
+
+    });
+
+
+
     arrivee = data.prevPage.find('input:text[name=arrivee]').val();
     transport = data.prevPage.find('input:radio[name=transport]:checked').val();
     typeParcours = data.prevPage.find('#typeParcours option:selected').val();
+
+    if (typeParcours === "nature"){
+        mapType = "TERRAIN";
+    } else {
+        mapType = "ROADMAP";
+    }
+
 
 
     // Get the map container node.
@@ -35,7 +52,16 @@ $(document).on('pagebeforeshow', '#parcours', function(e, data){
             center: new google.maps.LatLng(
                 48.813819, 2.270330
             ),
-            mapTypeId: google.maps.MapTypeId.ROADMAP
+            mapTypeId: google.maps.MapTypeId[mapType],
+            // OPTIONS CONTROLES MAP
+            zoomControl: true,
+            zoomControlOptions: {
+                style: google.maps.ZoomControlStyle.LARGE,
+                position: google.maps.ControlPosition.LEFT_CENTER
+            },
+            streetViewControl: false,
+            mapTypeControl: false,
+            panControl: false
         }
     );
 
@@ -69,6 +95,17 @@ $(document).on('pagebeforeshow', '#parcours', function(e, data){
                 longitude
             )
         );
+
+        // CENTRAGE DE LA CARTE SUR LE NOUVEAU MARKER + ZOOM
+        coord = new google.maps.LatLng(latitude,longitude);
+
+        var mapOpt = {
+            zoom: 15,
+            center: coord
+        };
+
+        map.setOptions(mapOpt);
+
 
         // Update the title if it was provided.
         if (label){
@@ -121,40 +158,36 @@ $(document).on('pagebeforeshow', '#parcours', function(e, data){
                     "Initial Position"
                 );
 
+                var origin = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 
-                // PARCOURS GOOGLE MAP
+                map.setCenter(origin);
+
 
                 // REQUETE GOOGLE MAPS
 
                 var directionsService = new google.maps.DirectionsService(),
                     directionsDisplay = new google.maps.DirectionsRenderer({suppressMarkers: true});
 
-                var origin = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 
                 travel = {
                     origin : origin,
                     destination : arrivee,
                     travelMode : google.maps.DirectionsTravelMode[transport]
 
-                }
-
-                //map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
-
+                };
 
                 directionsDisplay.setMap(map);
-                //$("#map-directions").empty();
-
-                //directionsDisplay.setPanel(document.getElementById("map-directions"));
 
                 directionsService.route(travel, function(result, status) {
                     if (status === google.maps.DirectionsStatus.OK) {
                         directionsDisplay.setDirections(result);
-/*
-                        var distanceDirection = result.routes[0].legs[0].steps[0].distance.text;
-                        var iconDirection = result.routes[0].legs[0].steps[0].maneuver;
+
+                        //var distanceDirection = result.routes[0].legs[0].steps[0].distance.text;
+                        //var iconDirection = result.routes[0].legs[0].steps[0].maneuver;
                         var distanceTotal = result.routes[0].legs[0].distance.text;
 
 
+  /*
                         //AFFICHAGE DES ICONES EN FONCTION DE DU PROCHAIN CHANGEMENT ITINERAIRE
                         if( iconDirection == "turn-sharp-left" || iconDirection == "roundabout-left" || iconDirection == "uturn-left" || iconDirection == "turn-slight-left" || iconDirection == "turn-left" || iconDirection == "fork-left" || iconDirection == "ramp-left" || iconDirection == "keep-left" ){
                             iconDirection = "<i class = 'fa fa-arrow-circle-o-left'></i> ";
@@ -167,12 +200,11 @@ $(document).on('pagebeforeshow', '#parcours', function(e, data){
 
 
                         $("#dirParcours").html("<p>" + iconDirection + distanceDirection + "</p>");
+
+   */
                         $("#distParcours").html("<p><i class='fa fa-location-arrow fa-lg'></i> " + distanceTotal + "</p>");
 
-                        */
                     }
-
-
 
 
                     // REQUETE AFFICHAGE POINTS STRATEGIQUES
@@ -213,7 +245,33 @@ $(document).on('pagebeforeshow', '#parcours', function(e, data){
         // invoking the given callback a number of times to
         // monitor the position. As such, it returns a "timer ID"
         // that can be used to later stop the monitoring.
-        var positionTimer = navigator.geolocation.watchPosition(
+
+
+
+                setLocation();
+
+
+
+
+            }
+        );
+
+
+        // If the position hasn't updated within 5 minutes, stop
+        // monitoring the position for changes.
+        setTimeout(
+            function(){
+                // Clear the position watcher.
+                navigator.geolocation.clearWatch( positionTimer );
+            },
+            (1000 * 60 * 5)
+        );
+
+    }
+
+    function setLocation(){
+
+        positionTimer = navigator.geolocation.watchPosition(
             function( position ){
 
                 // Log that a newer, perhaps more accurate
@@ -249,7 +307,7 @@ $(document).on('pagebeforeshow', '#parcours', function(e, data){
                     }
 
                     i++;
-                    if(i == 60){
+                    if(i == 2){
                         i = 0;
                     }
 
@@ -313,21 +371,7 @@ $(document).on('pagebeforeshow', '#parcours', function(e, data){
 
 
 
-
-            }
-        );
-
-
-        // If the position hasn't updated within 5 minutes, stop
-        // monitoring the position for changes.
-        setTimeout(
-            function(){
-                // Clear the position watcher.
-                navigator.geolocation.clearWatch( positionTimer );
-            },
-            (1000 * 60 * 5)
-        );
-
     }
+
 
 });

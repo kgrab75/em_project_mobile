@@ -178,7 +178,7 @@
     <!-- **************************** PAGE AFFICHAGE PARCOURS PROPOSITION **************************** -->
     <div data-role="page" data-theme="a" id="parcours">
         <div data-role="header" data-position="inline">
-            <a href="#submit" data-transition="slide" data-direction="reverse" class="ui-btn ui-icon-delete ui-btn-icon-notext" id="stopGeoloc"></a>
+            <a href="#submit" data-ajax="false" class="ui-btn ui-icon-delete ui-btn-icon-notext" id="backSubmit"></a>
             <h1><img src="assets/img/headLogo.png" alt=""/>Go Mobility</h1>
         </div>
 
@@ -214,8 +214,14 @@
 
         <div data-role="footer" data-position="fixed">
             <div class="footerBtn textCenter">
-                <div class="floatLeft vitesse"><p>13 km/h</p></div>
-                <a href="#"><div class="floatLeft camera"> <p><i class="fa fa-camera fa-lg"></i></p></div></a>
+
+                <fieldset data-role="controlgroup" data-type="horizontal" class="floatLeft chkbox">
+                    <input type="checkbox" name="stopGeolocation" id="stopGeolocation">
+                    <label for="stopGeolocation" id="pauseWatch"><i class="fa fa-pause fa-lg"></i> Pause</label>
+                </fieldset>
+
+
+                <a href="#"><div class="floatLeft camera"><p><i class="fa fa-camera fa-lg"></i></p></div></a>
                 <div class="floatRight distance" id="distParcours"></div>
             </div>
 
@@ -524,6 +530,24 @@
     <!-- **************************** FIN PAGE RECHERCHE PARCOURS SEARCH **************************** -->
 
     <script type="javascript">
+
+        var refresh = function(evt) {
+            // On empeche l'action par défaut du submit
+            evt.preventDefault();
+
+            // On affiche le loader pour le chargement de la chanson
+            $.mobile.loading('show', {
+                text : 'Chargement ...',
+                textVisible : true,
+                theme : "a"
+            });
+
+            var sportType = $('[name=version]:checked').val();
+            console.log(sportType);
+            app.listHome(sportType);
+
+
+        };
 
 
     </script>
