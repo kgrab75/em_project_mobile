@@ -10,6 +10,7 @@ var timer =  0;
 
 
 
+
 $(document).on('pagebeforeshow', '#parcours', function(e, data){
 
 
@@ -57,6 +58,8 @@ $(document).on('pageshow', '#parcours', function (event) {
         mapType = "ROADMAP";
     }
 
+
+    $('#popup_id').popup('open');
 
 
     // Get the map container node.
