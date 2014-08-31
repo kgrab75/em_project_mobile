@@ -36,6 +36,12 @@ $(document).on('pagebeforeshow', '#parcours', function(e, data){
 
     });
 
+    $("#bilanOK").click(function(){
+        // Stop géolocalisation
+        navigator.geolocation.clearWatch(positionTimer);
+
+    });
+
 
 
     arrivee = data.prevPage.find('input:text[name=arrivee]').val();
@@ -373,7 +379,6 @@ $(document).on('pageshow', '#parcours', function (event) {
 
                 // AFFICHAGE POPUP UNE FOIS ARRIVE A DESTINATION
                 if(distanceM < 50){
-                    navigator.geolocation.clearWatch(positionTimer);
                     $('#popupSearch').popup('open');
 
                  }
