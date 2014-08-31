@@ -1,5 +1,5 @@
 //Define an angular module for our app
-var app = angular.module('mobile', ['ui-rangeSlider']);
+var app = angular.module('mobile', ['ui-rangeSlider', 'ngTouch']);
 
 app.controller('mobileController', function($scope, $http) {
 
@@ -160,6 +160,12 @@ app.controller('mobileController', function($scope, $http) {
 
 
 
+    };
+
+    $scope.gotoiti = function(resultat) {
+        $scope.resultat = resultat;
+
+        $.mobile.changePage('#parcoursItin');
     };
 
 });
