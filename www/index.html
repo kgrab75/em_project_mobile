@@ -31,6 +31,7 @@
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD1ruG9PaUssg06qR5pAKoKi0fk6Va6Gz0&libraries=places"></script>
 
     <script src="assets/js/angular.min.js"></script>
+    <script src="assets/js/angular-touch.min.js"></script>
 
     <link href="assets/css/angular.rangeSlider.css" rel="stylesheet">
     <script src="assets/js/angular.rangeSlider.js"></script>
@@ -616,27 +617,27 @@
             <form class="ui-grid-a textCenter">
 
                 <label for="arrivee">Destination</label>
-                <input type="text" data-clear-btn="true" name="arrivee" id="arrivee" value="{{user.workaddress}}" placeholder="Lieu dit, rue, monument..." style="display: none;">
+                <input type="text" data-clear-btn="true" name="arrivee" id="arriveew" value="{{user.workaddress}}" placeholder="Lieu dit, rue, monument..." style="display: none;">
                 {{user.workaddress}}
 
                 <h3 class="textCenter borderBtm">MODE DE TRANSPORT</h3>
 
                 <fieldset data-role="controlgroup" data-type="horizontal" class="ui-grid-a borderBtm">
                     <div class="ui-block-a">
-                        <input type="radio" name="transport" id="transport1" value="WALKING" checked="checked">
-                        <label for="transport1"><i class="fa fa-male fa-2x"></i></label>
+                        <input type="radio" name="transport" id="transportw1" value="WALKING" checked="checked">
+                        <label for="transportw1"><i class="fa fa-male fa-2x"></i></label>
                     </div>
                     <div class="ui-block-b">
-                        <input type="radio" name="transport" id="transport2" value="BICYCLING">
-                        <label for="transport2"><i class="fa fa-bicycle fa-2x"></i></label>
+                        <input type="radio" name="transport" id="transportw2" value="BICYCLING">
+                        <label for="transportw2"><i class="fa fa-bicycle fa-2x"></i></label>
                     </div>
                     <div class="ui-block-c">
-                        <input type="radio" name="transport" id="transport3" value="TRANSIT">
-                        <label for="transport3"><i class="fa fa-bus fa-2x"></i></label>
+                        <input type="radio" name="transport" id="transportw3" value="TRANSIT">
+                        <label for="transportw3"><i class="fa fa-bus fa-2x"></i></label>
                     </div>
                     <div class="ui-block-d">
-                        <input type="radio" name="transport" id="transport4" value="DRIVING">
-                        <label for="transport4"><i class="fa fa-car fa-2x"></i></label>
+                        <input type="radio" name="transport" id="transportw4" value="DRIVING">
+                        <label for="transportw4"><i class="fa fa-car fa-2x"></i></label>
                     </div>
                 </fieldset>
 
