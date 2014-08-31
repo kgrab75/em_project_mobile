@@ -307,18 +307,15 @@
 
     <div data-role="page" data-theme="a" id="searchTourisme">
         <div data-role="header" data-position="inline">
-            <a href="#tourismeMenu" data-icon="gear" data-iconpos="notext">Type</a>
-            <h1><img src="assets/img/headLogo.png" alt=""/>Go Mobility</h1>
             <a href="#home" data-transition="slide" data-direction="reverse" class="ui-btn ui-icon-delete ui-btn-icon-notext"></a>
+            <h1><img src="assets/img/headLogo.png" alt=""/>Go Mobility</h1>
+            <a href="#tourismeMenu" data-icon="gear" data-iconpos="notext">Type</a>
         </div>
         <div data-role="content" data-theme="a" class="content">
 
 
 
             <form class="ui-grid-a textCenter" id="tourismeForm">
-
-
-                <div>{{post.transportT}}</div>
 
                 <h3 class="textCenter" ng-click="debbug()">MODE DE TRANSPORT</h3>
 
@@ -349,21 +346,21 @@
                     <div class="ui-grid-a">
                         <div class="ui-block-a">
                             <input type="radio" name="parcoursTypeT" id="parcoursTypeT1" value="economique" checked="checked" ng-model="post.parcoursTypeT">
-                            <label for="parcoursTypeT1"><i class="fa fa-usd fa-2x"></i></label>
+                            <label class="type-parcour" for="parcoursTypeT1"><i class="fa fa-usd fa-2x"></i><br>Economique</label>
                         </div>
                         <div class="ui-block-b">
                             <input type="radio" name="parcoursTypeT" id="parcoursTypeT2" value="historique" ng-model="post.parcoursTypeT">
-                            <label for="parcoursTypeT2"><i class="fa fa-university fa-2x"></i></label>
+                            <label class="type-parcour" for="parcoursTypeT2"><i class="fa fa-university fa-2x"></i><br>Historique</label>
                         </div>
                     </div>
                     <div class="ui-grid-a">
                         <div class="ui-block-a">
                             <input type="radio" name="parcoursTypeT" id="parcoursTypeT3" value="gastronomique" ng-model="post.parcoursTypeT">
-                            <label for="parcoursTypeT3"><i class="fa fa-cutlery fa-2x"></i></label>
+                            <label class="type-parcour" for="parcoursTypeT3"><i class="fa fa-cutlery fa-2x"></i><br>Gastronomique</label>
                         </div>
                         <div class="ui-block-b">
                             <input type="radio" name="parcoursTypeT" id="parcoursTypeT4" value="nature" ng-model="post.parcoursTypeT">
-                            <label for="parcoursTypeT4"><i class="fa fa-tree fa-2x"></i></label>
+                            <label class="type-parcour" for="parcoursTypeT4"><i class="fa fa-tree fa-2x"></i><br>Nature</label>
                         </div>
                     </div>
                 </fieldset>
@@ -374,7 +371,7 @@
 
                 <h3 class="textCenter">DISTANCE DU PARCOURS</h3>
 
-                <div range-slider min="0" max="10" model-min="post.distance.min" model-max="post.distance.max" prevent-equal-min-max="true" prefix=" Km"></div>
+                <div range-slider min="0" max="100" step="10" model-min="post.distance.min" model-max="post.distance.max" prevent-equal-min-max="true" prefix=" Km"></div>
 
                 <h3 class="textCenter">DIFFICULTES</h3>
 
@@ -390,7 +387,7 @@
                         </div>
                         <div class="ui-block-c">
                             <input type="radio" name="difficulteT" id="difficulteT3" value="3" ng-model="post.difficulteT">
-                            <label for="difficulteT3"><i class="fa fa-star fa-2x"></i><i class="fa fa-star fa-2x"></i><i class="fa fa-star fa-2x"></i></label>
+                            <label for="difficulteT3" style="white-space: nowrap; padding-left: 0px; padding-right: 0px;"><i class="fa fa-star fa-2x"></i><i class="fa fa-star fa-2x"></i><i class="fa fa-star fa-2x"></i></label>
                         </div>
                     </div>
 
@@ -423,18 +420,18 @@
 
         </div>
 
-        <div data-role="panel" data-position="left" data-position-fixed="true" data-display="overlay" data-theme="a" id="tourismeMenu">
+        <div data-role="panel" data-position="right" data-position-fixed="true" data-display="overlay" data-theme="a" id="tourismeMenu">
             <form class="typeForm">
 
                 <fieldset data-role="controlgroup" data-theme="a" data-type="horizontal">
 
-                    <input type="radio" name="typeParcoursT" id="tt1" value="tourisme" checked="checked">
+                    <input type="radio" name="typeParcours" id="tt1" value="touristique" checked="checked" ng-model="post.type">
                     <label for="tt1"><i class="fa fa-university fa-2x"></i><br/><span class="xxsText">Touristique</span></label>
 
-                    <input type="radio" name="typeParcoursT" id="tt2" value="sport">
+                    <input type="radio" name="typeParcours" id="tt2" value="sportif" ng-model="post.type">
                     <label for="tt2"><i class="fa fa-child fa-2x"></i><br/><span class="xxsText">Sportif</span></label>
 
-                    <input type="radio" name="typeParcoursT" id="tt3" value="work">
+                    <input type="radio" name="typeParcours" id="tt3" value="work" ng-model="post.type">
                     <label for="tt3"><i class="fa fa-suitcase fa-2x"></i><br/><span class="xxsText">Go to work</span></label>
 
                 </fieldset>
@@ -457,32 +454,82 @@
 
     <div data-role="page" data-theme="a" id="searchSport">
         <div data-role="header" data-position="inline">
-            <a href="#sportMenu" data-icon="gear" data-iconpos="notext">Type</a>
-            <h1><img src="assets/img/headLogo.png" alt=""/>Go Mobility</h1>
             <a href="#home" data-transition="slide" data-direction="reverse" class="ui-btn ui-icon-delete ui-btn-icon-notext"></a>
+            <h1><img src="assets/img/headLogo.png" alt=""/>Go Mobility</h1>
+            <a href="#sportMenu" data-icon="gear" data-iconpos="notext">Type</a>
         </div>
+
         <div data-role="content" data-theme="a" class="content">
 
-            <p>Recherche sport</p>
 
-            <form class="ui-grid-a textCenter">
+
+            <form class="ui-grid-a textCenter" id="soprtForm">
+
+                <h3 class="textCenter" ng-click="debbug()">MODE DE TRANSPORT</h3>
+
+                <fieldset data-role="controlgroup" data-type="horizontal" class="ui-grid-a borderBtm">
+
+                    <div class="ui-block-a">
+                        <input type="radio" name="transportT" id="transportsT1" value="WALKING" checked="checked" ng-model="post.transportT">
+                        <label for="transportsT1"><i class="fa fa-male fa-2x"></i></label>
+                    </div>
+                    <div class="ui-block-b">
+                        <input type="radio" name="transportT" id="transportsT2" value="BICYCLING" ng-model="post.transportT">
+                        <label for="transportsT2"><i class="fa fa-bicycle fa-2x"></i></label>
+                    </div>
+                </fieldset>
+
+
+                <h3 class="textCenter">DIFFICULTES</h3>
+
+                <fieldset data-role="controlgroup">
+                    <div class="ui-grid-b level">
+                        <div class="ui-block-a">
+                            <input type="radio" name="difficulteT" id="difficultesT1" value="1" checked="checked" ng-model="post.difficulteT">
+                            <label for="difficultesT1"><i class="fa fa-star fa-2x"></i></label>
+                        </div>
+                        <div class="ui-block-b">
+                            <input type="radio" name="difficulteT" id="difficultesT2" value="2" ng-model="post.difficulteT">
+                            <label for="difficultesT2"><i class="fa fa-star fa-2x"></i><i class="fa fa-star fa-2x"></i></i></label>
+                        </div>
+                        <div class="ui-block-c">
+                            <input type="radio" name="difficulteT" id="difficultesT3" value="3" ng-model="post.difficulteT">
+                            <label for="difficultesT3" style="white-space: nowrap; padding-left: 0; padding-right: 0;"><i class="fa fa-star fa-2x"></i><i class="fa fa-star fa-2x"></i><i class="fa fa-star fa-2x"></i></label>
+                        </div>
+                    </div>
+
+                </fieldset>
+
+                <h3 class="textCenter">DUREE DU PARCOURS</h3>
+
+                <div range-slider min="0" max="10" model-min="post.duree.min" model-max="post.duree.max" prevent-equal-min-max="true" prefix=" H"></div>
+
+                <h3 class="textCenter">DISTANCE DU PARCOURS</h3>
+
+                <div range-slider min="0" max="100" step="10" model-min="post.distance.min" model-max="post.distance.max" prevent-equal-min-max="true" prefix=" Km"></div>
+
+
+
+                <a href="#parcoursSearch" id="submitSport" data-transition="slide"  class="ui-btn" ng-click="search()">Rechercher</a>
 
             </form>
 
+
+
         </div>
 
-        <div data-role="panel" data-position="left" data-position-fixed="true" data-display="overlay" data-theme="a" id="sportMenu">
+        <div data-role="panel" data-position="right" data-position-fixed="true" data-display="overlay" data-theme="a" id="sportMenu">
             <form class="typeForm">
 
                 <fieldset data-role="controlgroup" data-theme="a" data-type="horizontal">
 
-                    <input type="radio" name="typeParcoursS" id="ts1" value="tourisme">
+                    <input type="radio" name="typeParcours" id="ts1" value="touristique" ng-model="post.type">
                     <label for="ts1"><i class="fa fa-university fa-2x"></i><br/><span class="xxsText">Touristique</span></label>
 
-                    <input type="radio" name="typeParcoursS" id="ts2" value="sport">
+                    <input type="radio" name="typeParcours" id="ts2" value="sportif" ng-model="post.type">
                     <label for="ts2"><i class="fa fa-child fa-2x"></i><br/><span class="xxsText">Sportif</span></label>
 
-                    <input type="radio" name="typeParcoursS" id="ts3" value="work">
+                    <input type="radio" name="typeParcours" id="ts3" value="work" ng-model="post.type">
                     <label for="ts3"><i class="fa fa-suitcase fa-2x"></i><br/><span class="xxsText">Go to work</span></label>
 
                 </fieldset>
@@ -505,32 +552,61 @@
     <!-- **************************** PAGE RECHERCHE GO TO WORK **************************** -->
     <div data-role="page" data-theme="a" id="searchWork">
         <div data-role="header" data-position="inline">
-            <a href="#workMenu" data-icon="gear" data-iconpos="notext">Type</a>
-            <h1><img src="assets/img/headLogo.png" alt=""/>Go Mobility</h1>
             <a href="#home" data-transition="slide" data-direction="reverse" class="ui-btn ui-icon-delete ui-btn-icon-notext"></a>
+            <h1><img src="assets/img/headLogo.png" alt=""/>Go Mobility</h1>
+            <a href="#workMenu" data-icon="gear" data-iconpos="notext">Type</a>
         </div>
         <div data-role="content" data-theme="a" class="content">
 
-            <p>Recherche go to work</p>
+            <h3 class="textCenter ">ON VA OÙ ?</h3>
 
             <form class="ui-grid-a textCenter">
 
+                <label for="arrivee">Destination</label>
+                <input type="text" data-clear-btn="true" name="arrivee" id="arrivee" value="{{user.workaddress}}" placeholder="Lieu dit, rue, monument..." style="display: none;">
+                {{user.workaddress}}
+
+                <h3 class="textCenter borderBtm">MODE DE TRANSPORT</h3>
+
+                <fieldset data-role="controlgroup" data-type="horizontal" class="ui-grid-a borderBtm">
+                    <div class="ui-block-a">
+                        <input type="radio" name="transport" id="transport1" value="WALKING" checked="checked">
+                        <label for="transport1"><i class="fa fa-male fa-2x"></i></label>
+                    </div>
+                    <div class="ui-block-b">
+                        <input type="radio" name="transport" id="transport2" value="BICYCLING">
+                        <label for="transport2"><i class="fa fa-bicycle fa-2x"></i></label>
+                    </div>
+                    <div class="ui-block-c">
+                        <input type="radio" name="transport" id="transport3" value="TRANSIT">
+                        <label for="transport3"><i class="fa fa-bus fa-2x"></i></label>
+                    </div>
+                    <div class="ui-block-d">
+                        <input type="radio" name="transport" id="transport4" value="DRIVING">
+                        <label for="transport4"><i class="fa fa-car fa-2x"></i></label>
+                    </div>
+                </fieldset>
+
+                <a href="#parcours" id="submitParcours" data-transition="slide"  class="ui-btn" >Rechercher</a>
+
             </form>
+
+
 
         </div>
 
-        <div data-role="panel" data-position="left" data-position-fixed="true" data-display="overlay" data-theme="a" id="workMenu">
+        <div data-role="panel" data-position="right" data-position-fixed="true" data-display="overlay" data-theme="a" id="workMenu">
             <form class="typeForm">
 
                 <fieldset data-role="controlgroup" data-theme="a" data-type="horizontal">
 
-                    <input type="radio" name="typeParcoursW" id="tw1" value="tourisme">
+                    <input type="radio" name="typeParcours" id="tw1" value="touristique"  ng-model="post.type">
                     <label for="tw1"><i class="fa fa-university fa-2x"></i><br/><span class="xxsText">Touristique</span></label>
 
-                    <input type="radio" name="typeParcoursW" id="tw2" value="sport">
+                    <input type="radio" name="typeParcours" id="tw2" value="sportif" ng-model="post.type">
                     <label for="tw2"><i class="fa fa-child fa-2x"></i><br/><span class="xxsText">Sportif</span></label>
 
-                    <input type="radio" name="typeParcoursW" id="tw3" value="work">
+                    <input type="radio" name="typeParcours" id="tw3" value="work" ng-model="post.type">
                     <label for="tw3"><i class="fa fa-suitcase fa-2x"></i><br/><span class="xxsText">Go to work</span></label>
 
                 </fieldset>

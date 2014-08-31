@@ -56,7 +56,7 @@ h1 img {
 
 
 .textCenter {
-    text-align: center;
+    text-align: center !important;
 }
 
 #login {
@@ -226,6 +226,10 @@ h1 img {
 
 }
 
+.ui-btn-icon-left {
+    padding-left: 1em;
+}
+
 .ui-controlgroup-horizontal .ui-controlgroup-controls .ui-btn {
     border-right-width: 1px;
     border-bottom-width:0 ;
@@ -255,6 +259,20 @@ h1 img {
 }
 .level label {
     padding: 8px;
+}
+
+.ui-btn-inherit.ui-btn-icon-left {
+    text-align: center;
+}
+
+.ui-radio-on{
+    background-color: #f3e6d3 !important;
+    border-color: #ffffff !important;
+    color: #646462 !important;
+}
+
+.ui-controlgroup-controls input[type="radio"]{
+    display: none;
 }
 
 

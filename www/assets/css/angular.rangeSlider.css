@@ -105,8 +105,8 @@
 /* line 97, scss/angular.rangeSlider.scss */
 .ngrs-range-slider .ngrs-runner {
   position: relative;
-  margin: 0 9px;
-  height: 18px;
+  margin: 0 18px;
+  height: 36px;
 }
 /* line 107, scss/angular.rangeSlider.scss */
 .ngrs-range-slider .ngrs-join {
@@ -115,8 +115,8 @@
   top: 50%;
   left: 0;
   right: 100%;
-  height: 8px;
-  margin: -4px 0 0 0;
+  height: 16px;
+  margin: -8px 0 0 0;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
   border-radius: 4px;
@@ -131,8 +131,8 @@
   position: absolute;
   z-index: 2;
   height: 100%;
-  width: 18px;
-  margin: 0 0 0 -9px;
+  width: 36px;
+  margin: 0 0 0 -18px;
   background: #efefef;
   border: 1px solid #ccc;
   -webkit-border-radius: 3px;

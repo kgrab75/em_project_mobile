@@ -9,19 +9,23 @@ app.controller('mobileController', function($scope, $http) {
         $scope.user = JSON.parse(localStorage.getItem('user'));
     }
 
-    $scope.post = {};
+    $scope.post = {
+        'type' : 'touristique',
+        'duree' : {
+            min: 0,
+            max: 10
+        },
+        'distance' : {
+            min: 0,
+            max: 100
+        },
+        'transportT' : 'WALKING',
+        'parcoursTypeT' : 'economique',
+        'difficulteT' : 1,
+        'payant' : 0
+    };
+
     $scope.inscr = {};
-    $scope.post.type = 'touristique';
-
-    $scope.post.duree = {
-        min: 4,
-        max: 8
-    };
-
-    $scope.post.distance = {
-        min: 4,
-        max: 8
-    };
 
     $scope.debbug = function() {
         console.log($scope.post);
@@ -55,7 +59,7 @@ app.controller('mobileController', function($scope, $http) {
         }, function(results, status) {
 
             if( status == google.maps.GeocoderStatus.OK ) {
-                $scope.inscr.latlong = results[0].geometry.location.B + ', ' + results[0].geometry.location.k;
+                $scope.inscr.latlong = results[0].geometry.location.k + ', ' + results[0].geometry.location.B;
 
                 var postData = 'myForm='+JSON.stringify($scope.inscr);
 
@@ -108,8 +112,26 @@ app.controller('mobileController', function($scope, $http) {
                 $scope.user = {};
                 $scope.user.email = res.email;
                 $scope.user.ges = res.ges;
+                $scope.user.latlong = res.travail;
 
-                localStorage.setItem('user', JSON.stringify($scope.user));
+                aLatLong = $scope.user.latlong.split(', ');
+                lat = aLatLong[0];
+                long = aLatLong[1];
+
+                var geocoder = new google.maps.Geocoder();
+                var latlng = new google.maps.LatLng(lat, long);
+
+                geocoder.geocode({
+                    "latLng": latlng
+                }, function(results, status) {
+                    console.log(latlng);
+                    console.log($scope.user.latlong);
+                    console.log(results[0].formatted_address);
+                    $scope.user.workaddress = results[0].formatted_address;
+
+                    localStorage.setItem('user', JSON.stringify($scope.user));
+                });
+
                 $.mobile.changePage('#home');
             }
 

@@ -52,15 +52,18 @@ $(document).bind('pageinit', function(event) {
 
     if (activePage == "searchTourisme") {
 
-        $("#tourismeMenu input:radio[name=typeParcoursT]").on("change", function(){
+        $("input:radio[name=typeParcours]").on("change", function(){
 
-            var value = $("#tourismeMenu input:radio[name=typeParcoursT]:checked").val();
+            var value = $("input:radio[name=typeParcours]:checked").val();
 
-            if( value === "sport" ){
-                document.location.href="#searchSport";
+            if( value === "touristique" ){
+                $.mobile.changePage('#searchTourisme');
+            }
+            if( value === "sportif" ){
+                $.mobile.changePage('#searchSport');
             }
             if( value === "work" ){
-                document.location.href="#searchWork";
+                $.mobile.changePage('#searchWork');
             }
 
 
