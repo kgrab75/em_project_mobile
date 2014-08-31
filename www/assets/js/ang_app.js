@@ -3,7 +3,7 @@ var app = angular.module('mobile', ['ui-rangeSlider']);
 
 app.controller('mobileController', function($scope, $http) {
 
-    url_base = 'http://192.168.1.23/em_project';
+    url_base = 'http://gomobility:8888';
 
     if(localStorage.getItem('user')){
         $scope.user = JSON.parse(localStorage.getItem('user'));
