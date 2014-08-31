@@ -4,6 +4,7 @@ var app = angular.module('mobile', ['ui-rangeSlider']);
 app.controller('mobileController', function($scope, $http, $timeout) {
 
     $scope.post = {};
+    $scope.inscr = {};
     $scope.post.type = 'touristique';
 
     $scope.post.duree = {
@@ -35,6 +36,33 @@ app.controller('mobileController', function($scope, $http, $timeout) {
         }).error(function(error){
             console.log(error);
         });
+    };
+
+    $scope.sigin = function() {
+        $scope.inscr.travail = document.getElementById('travail').value;
+
+
+        var geocoder = new google.maps.Geocoder();
+        geocoder.geocode({
+            "address": $scope.inscr.travail
+        }, function(results) {
+            $scope.inscr.latlong = results[0].geometry.location.B + ', ' + results[0].geometry.location.k;
+        });
+
+        var postData = 'myForm='+JSON.stringify($scope.inscr);
+
+        $http({
+            method : 'POST',
+            url : 'http://localhost/em_project/ajax/inscription',
+            data: postData,
+            headers : {'Content-Type': 'application/x-www-form-urlencoded'}
+
+        }).success(function(res){
+            console.log('inscrit');
+        }).error(function(error){
+            console.log(error);
+        });
+
     };
 
 });

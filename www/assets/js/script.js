@@ -34,6 +34,16 @@ $(document).bind('pageinit', function(event) {
 
     }
 
+    if (activePage == "sigin") {
+
+        var options = {
+            componentRestrictions: {country: 'fr'}
+        };
+        var input = document.getElementById('travail');
+        autocomplete = new google.maps.places.Autocomplete(input, options);
+
+    }
+
 
 
 
