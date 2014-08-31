@@ -53,7 +53,7 @@ app.controller('mobileController', function($scope, $http, $timeout) {
 
         $http({
             method : 'POST',
-            url : 'http://localhost/em_project/ajax/inscription',
+            url : 'http://gomobility:8888/ajax/inscription',
             data: postData,
             headers : {'Content-Type': 'application/x-www-form-urlencoded'}
 

@@ -7,7 +7,7 @@ var markersArray = [];
 var i = 0;
 var positionTimer;
 var timer =  0;
-
+var distanceM;
 
 
 
@@ -58,8 +58,6 @@ $(document).on('pageshow', '#parcours', function (event) {
         mapType = "ROADMAP";
     }
 
-
-    $('#popup_id').popup('open');
 
 
     // Get the map container node.
@@ -207,6 +205,7 @@ $(document).on('pageshow', '#parcours', function (event) {
                             //var distanceDirection = result.routes[0].legs[0].steps[0].distance.text;
                             //var iconDirection = result.routes[0].legs[0].steps[0].maneuver;
                             var distanceTotal = result.routes[0].legs[0].distance.text;
+                            distanceM = result.routes[0].legs[0].distance.value;
 
 
                             /*
@@ -372,6 +371,21 @@ $(document).on('pageshow', '#parcours', function (event) {
 
 
 
+
+                // AFFICHAGE POPUP UNE FOIS ARRIVE A DESTINATION
+                if(distanceM < 50){
+                    navigator.geolocation.clearWatch(positionTimer);
+                    $('#popupSearch').popup('open');
+
+                 }
+
+
+
+
+
+
+
+
                 // AFFICHAGE DES POINTS D'INTERETS
 
                 function showPlaces() {
@@ -426,6 +440,8 @@ $(document).on('pageshow', '#parcours', function (event) {
                             infowindow.open(map, this);
                         });
                     }
+
+
                 }
 
             },
