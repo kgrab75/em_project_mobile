@@ -191,7 +191,7 @@ h1 img {
 }
 
 .footerBtn fieldset.chkbox {
-    width: 38%;
+    width: 33%;
 }
 
 #parcours > div.ui-footer.ui-bar-inherit.ui-footer-fixed.slideup fieldset.chkbox > div,
@@ -207,12 +207,12 @@ h1 img {
 }
 
 .footerBtn div.camera {
-    width: 23%;
+    width: 32%;
     border-left: 1px solid white;
     border-right: 1px solid white;
 }
 .footerBtn div.distance {
-    width: 38%;
+    width: 33%;
 }
 
 .typeForm fieldset {

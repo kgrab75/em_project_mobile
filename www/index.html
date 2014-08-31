@@ -228,7 +228,7 @@
                 </fieldset>
 
 
-                <a href="#"><div class="floatLeft camera"><p><i class="fa fa-camera fa-lg"></i></p></div></a>
+                <a href="#" id="centerBtn"><div class="floatLeft camera"><p><i class="fa fa-crosshairs fa-lg"></i></p></div></a>
                 <div class="floatRight distance" id="distParcours"></div>
             </div>
 
@@ -534,6 +534,7 @@
                         <th>{{resultat.ges}}</th>
                         <th>{{resultat.distance}}</th>
                         <th>{{resultat.duree}}</th>
+                        <th ng-if="resultat.transport == ''"></th>
                         <th>{{resultat.transport}}</th>
                         <th>{{resultat.difficulty}}</th>
 
@@ -556,23 +557,6 @@
 
     <script type="javascript">
 
-        var refresh = function(evt) {
-            // On empeche l'action par défaut du submit
-            evt.preventDefault();
-
-            // On affiche le loader pour le chargement de la chanson
-            $.mobile.loading('show', {
-                text : 'Chargement ...',
-                textVisible : true,
-                theme : "a"
-            });
-
-            var sportType = $('[name=version]:checked').val();
-            console.log(sportType);
-            app.listHome(sportType);
-
-
-        };
 
 
     </script>
