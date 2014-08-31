@@ -74,9 +74,28 @@ app.controller('mobileController', function($scope, $http) {
                     $scope.error = res.error;
 
                     if($scope.error == 'inscrit'){
+                        $scope.user = {};
                         $scope.user.email = $scope.inscr.email;
                         $scope.user.ges = 0;
-                        localStorage.setItem('user', JSON.stringify($scope.user));
+                        $scope.user.latlong = $scope.inscr.latlong;
+
+                        aLatLong = $scope.user.latlong.split(', ');
+                        lat = aLatLong[0];
+                        long = aLatLong[1];
+
+                        var geocoder = new google.maps.Geocoder();
+                        var latlng = new google.maps.LatLng(lat, long);
+
+                        geocoder.geocode({
+                            "latLng": latlng
+                        }, function(results, status) {
+                            console.log(latlng);
+                            console.log($scope.user.latlong);
+                            console.log(results[0].formatted_address);
+                            $scope.user.workaddress = results[0].formatted_address;
+
+                            localStorage.setItem('user', JSON.stringify($scope.user));
+                        });
                         $.mobile.changePage('#home');
                     }
 
