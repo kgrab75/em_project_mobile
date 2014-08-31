@@ -239,7 +239,7 @@
     <!-- **************************** PAGE AFFICHAGE PARCOURS PROPOSITION **************************** -->
     <div data-role="page" data-theme="a" id="parcours">
         <div data-role="header"  data-position="fixed">
-            <a href="#submit" data-ajax="false" class="ui-btn ui-icon-delete ui-btn-icon-notext" id="backSubmit"></a>
+            <a href="#home" data-ajax="false" class="ui-btn ui-icon-delete ui-btn-icon-notext" id="backSubmit"></a>
             <h1><img src="assets/img/headLogo.png" alt=""/>Go Mobility</h1>
         </div>
 
@@ -257,7 +257,6 @@
                 </div>
                 <div role="main" class="ui-content">
                     <h3 class="ui-title">Vous êtes arrivé à destination, découvrez votre bilan et confirmez votre participation dès maintenant !</h3>
-                    <a href="#" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b" data-rel="back">Continuer</a>
                     <a href="#bilanSubmit" id="bilanOK" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b" data-transition="flow">Accéder au bilan</a>
                 </div>
             </div>
@@ -725,7 +724,7 @@
                 </thead>
 
                 <tbody>
-                    <tr ng-repeat="(keyData, resultat) in resultats">
+                    <tr ng-repeat="(keyData, resultat) in resultats" ng-click="gotosearch(resultat)">
                         <th>{{keyData+1}}</th>
                         <th>{{resultat.ges}}</th>
                         <th>{{resultat.distance}}</th>
@@ -755,40 +754,32 @@
         </div>
 
 
-        <script src="assets/js/mapSearch.js"></script>
+        <h3 class="textCenter">Détails du parcours</h3>
+        {{resultat.start}}<br/>
+        {{resultat.arrival}}
+        {{resultat.distance}}
+        {{resultat.duree}}
+        {{resultat.transport}}
+        {{resultat.ges}}
+        {{resultat.sous_type}}
+        {{resultat.payant}}
+        {{resultat.difficulty}}
+
+        <form>
+
+        </form>
+
+        <input type="hidden" name="departPerso" value="{{resultat.start}}">
+        <input type="hidden" name="arrivee" value="{{resultat.arrival}}">
+        <input type="hidden" name="typeParcours" value="{{resultat.sous_type}}">
+        <input type="hidden" name="transport" value="{{resultat.transport}}">
 
 
-        <div data-role="content" data-theme="a" class="content">
 
-            <div id="map-search"></div>
-
-            <div data-role="popup" id="popupSearch2" data-overlay-theme="b" data-theme="b" data-dismissible="false" style="max-width:400px;">
-                <div data-role="header" data-theme="a">
-                    <h2>Félicitation !</h2>
-                </div>
-                <div role="main" class="ui-content">
-                    <h3 class="ui-title">Vous êtes arrivé à destination, découvrez votre bilan et confirmez votre participation dès maintenant !</h3>
-                    <a href="#" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b" data-rel="back">Continuer</a>
-                    <a href="#bilanSubmit" id="bilanOK2" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b" data-transition="flow">Accéder au bilan</a>
-                </div>
-            </div>
-        </div>
+        <a href="#parcours" id="submitSearch" data-transition="slide"  class="ui-btn" >C'est parti !</a>
 
 
-        <div data-role="footer" data-position="fixed">
-            <div class="footerBtn textCenter">
 
-                <fieldset data-role="controlgroup" data-type="horizontal" class="floatLeft chkbox">
-                    <input type="checkbox" name="stopGeolocation" id="stopGeolocation2">
-                    <label for="stopGeolocation" id="pauseWatch2"><i class="fa fa-pause fa-lg"></i> Pause</label>
-                </fieldset>
-
-
-                <a href="#" id="centerBtn2"><div class="floatLeft camera"><p><i class="fa fa-crosshairs fa-lg"></i></p></div></a>
-                <div class="floatRight distance" id="distanceParcours2"></div>
-            </div>
-
-        </div>
 
 
     </div>

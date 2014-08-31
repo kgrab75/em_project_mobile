@@ -162,4 +162,10 @@ app.controller('mobileController', function($scope, $http) {
 
     };
 
+    $scope.gotosearch = function(resultat) {
+        $scope.resultat = resultat;
+
+        $.mobile.changePage('#mapsearch');
+    };
+
 });

@@ -1,7 +1,6 @@
 
 var markerImg = "assets/img/location.png";
 var markerA = "assets/img/markerA.png";
-var markerD = "assets/img/markerD.png";
 var arrivee, transport, typeParcours, directionsService, directionsDisplay, distanceTotal, distanceDirection, distanceM, locationPlace;
 
 var markersArray = [];
@@ -11,17 +10,15 @@ var timer =  0;
 var distanceM2;
 var googleTime;
 var origin;
-var endLocation;
+var departParcours;
 
-
-var waypointLatLng;
-var departPerso;
-var waypointArray = [];
 
 
 
 // Alert si on quitte le parcours
 $("#backSubmit").click(function(){
+
+    confirm("Êtes-vous sûr de vouloir quitter le parcours ?");
 
     navigator.geolocation.clearWatch(positionTimer);
 
@@ -34,37 +31,12 @@ $("#backSubmit").click(function(){
 
 $(document).on('pagebeforeshow', '#parcours', function(e, data){
 
-    departPerso = data.prevPage.find('input:hidden[name=departPerso]').val();
-
-    if( departPerso == undefined){
-
-        arrivee = data.prevPage.find('input:text[name=arrivee]').val();
-        transport = data.prevPage.find('input:radio[name=transport]:checked').val();
-        typeParcours = data.prevPage.find('#typeParcours option:selected').val();
-
-    } else {
-
-        arrivee = data.prevPage.find('input:hidden[name=arrivee]').val();
-        transport = data.prevPage.find('input:hidden[name=transport]').val();
-        typeParcours = data.prevPage.find('input:hidden[name=typeParcours]').val();
-
-        console.log(arrivee);
-        console.log(departPerso);
-        console.log(transport);
-        console.log(typeParcours);
-
-        var departParse = departPerso.split(", ");
-        waypointLatLng = new google.maps.LatLng(departParse[0] , departParse[1]);
 
 
-        var arriveeParse = arrivee.split(", ");
-        arrivee = new google.maps.LatLng(arriveeParse[0] , arriveeParse[1]);
-
-        waypointArray = [{location:waypointLatLng, stopover:true}];
-
-
-    }
-
+    arrivee = data.prevPage.find('input:text[name=arrivee]').val();
+    transport = data.prevPage.find('input:radio[name=transport]:checked').val();
+    typeParcours = data.prevPage.find('#typeParcours option:selected').val();
+    departParcours = data.prevPage.find('#typeParcours option:selected').val();
 
 });
 
@@ -214,6 +186,7 @@ $(document).on('pageshow', '#parcours', function (event) {
 
 
 
+
                 // REQUETE GOOGLE MAPS
 
                 directionsService = new google.maps.DirectionsService();
@@ -223,7 +196,6 @@ $(document).on('pageshow', '#parcours', function (event) {
                 travel = {
                     origin : origin,
                     destination : arrivee,
-                    waypoints : waypointArray,
                     travelMode : google.maps.DirectionsTravelMode[transport]
 
                 };
@@ -234,8 +206,6 @@ $(document).on('pageshow', '#parcours', function (event) {
                         if (status === google.maps.DirectionsStatus.OK) {
                             directionsDisplay.setDirections(result);
 
-                            console.log("Intinéraire OK");
-
                             distanceDirection = result.routes[0].legs[0].steps[0].distance.text;
                             //var iconDirection = result.routes[0].legs[0].steps[0].maneuver;
                             distanceTotal = result.routes[0].legs[0].distance.text;
@@ -243,7 +213,7 @@ $(document).on('pageshow', '#parcours', function (event) {
 
 
                             googleTime = result.routes[0].legs[0].duration.value;
- /*
+                            /*
                              //AFFICHAGE DES ICONES EN FONCTION DE DU PROCHAIN CHANGEMENT ITINERAIRE
                              if( iconDirection == "turn-sharp-left" || iconDirection == "roundabout-left" || iconDirection == "uturn-left" || iconDirection == "turn-slight-left" || iconDirection == "turn-left" || iconDirection == "fork-left" || iconDirection == "ramp-left" || iconDirection == "keep-left" ){
                              iconDirection = "<i class = 'fa fa-arrow-circle-o-left'></i> ";
@@ -263,26 +233,9 @@ $(document).on('pageshow', '#parcours', function (event) {
                         }
 
 
-                        //SI LE POINT DE DEPART EST DIFFERENTS DU POINT DE DEPART DU PARCOURS
-
-                        if (departPerso == undefined) {
-                           endLocation = new google.maps.LatLng(result.routes[0].legs[0].end_location.k, result.routes[0].legs[0].end_location.B);
-
-                        } else {
-                            endLocation = new google.maps.LatLng(result.routes[0].legs[1].end_location.k, result.routes[0].legs[1].end_location.B);
 
 
-                            var wptMarker = new google.maps.Marker({
-                                map: map,
-                                icon: markerD,
-                                position: waypointLatLng
-                            });
-
-                        }
-
-
-                        console.log("WAYPOINT");
-                        console.log(waypointArray);
+                        var endLocation = new google.maps.LatLng(result.routes[0].legs[0].end_location.k, result.routes[0].legs[0].end_location.B);
 
                         var arrivalMarker = new google.maps.Marker({
                             map: map,
@@ -352,23 +305,23 @@ $(document).on('pageshow', '#parcours', function (event) {
         positionTimer = navigator.geolocation.watchPosition(
             function( position ){
                 locationPlace = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+                function center(){
+                    // CENTRAGE DE LA CARTE SUR LE NOUVEAU MARKER + ZOOM
 
-
-                // CENTRAGE DE LA CARTE SUR LE NOUVEAU MARKER + ZOOM
-
-                $("#centerBtn").click(function(){
-                    var mapOpt = {
-                        center: locationPlace
-                    };
-                    map.setOptions(mapOpt);
-                });
-                // Zoom et centrage sur le marker
-                if(timer == 0){
                     var mapOpt = {
                         zoom: 17,
                         center: locationPlace
                     };
                     map.setOptions(mapOpt);
+
+                }
+
+                $("#centerBtn").click(function(){
+                    center();
+                });
+                // Zoom et centrage sur le marker
+                if(timer == 0){
+                    center();
                 }
 
                 timer = timer+5;
@@ -392,7 +345,6 @@ $(document).on('pageshow', '#parcours', function (event) {
                 travel2 = {
                     origin : locationPlace,
                     destination : arrivee,
-                    waypoints : waypointArray,
                     travelMode : google.maps.DirectionsTravelMode[transport]
 
                 };
@@ -403,20 +355,9 @@ $(document).on('pageshow', '#parcours', function (event) {
                         directionsDisplay.setDirections(response);
 
 
-                        if(departPerso == undefined){
-                            var distanceTotal2 = response.routes[0].legs[0].distance.text;
-                            distanceM2 = response.routes[0].legs[0].distance.value;
-                        }else {
-                            distanceM2 = response.routes[0].legs[0].distance.value + response.routes[0].legs[1].distance.value;
 
-                            if(distanceM2 > 1000){
-                                var distanceTotal2Km = distanceTotal2M / 1000;
-                                var distanceTotal2 = distanceTotal2Km.toFixed(1) + " km";
-
-                            } else {
-                                var distanceTotal2 = distanceTotal2M + " m";
-                            }
-                        }
+                        var distanceTotal2 = response.routes[0].legs[0].distance.text;
+                        distanceM2 = response.routes[0].legs[0].distance.value;
 
                         $("#distanceParcours").html("<p><i class='fa fa-location-arrow fa-lg'></i> " + distanceTotal2 + "</p>");
                     }
@@ -456,7 +397,7 @@ $(document).on('pageshow', '#parcours', function (event) {
                 if(distanceM2 < 50){
                     $('#popupSearch').popup('open');
 
-                 }
+                }
 
                 // AFFICHAGE DES POINTS D'INTERETS
 
@@ -505,7 +446,7 @@ $(document).on('pageshow', '#parcours', function (event) {
 
                         // Récupération des markers pour suppression au prochaine update
 
-                            markersArray.push(marker);
+                        markersArray.push(marker);
 
                         google.maps.event.addListener(marker, 'click', function() {
                             infowindow.setContent(place.name);
