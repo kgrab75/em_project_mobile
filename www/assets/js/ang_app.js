@@ -5,6 +5,10 @@ app.controller('mobileController', function($scope, $http) {
 
     url_base = 'http://192.168.1.23/em_project';
 
+    if(localStorage.getItem('user')){
+        $scope.user = JSON.parse(localStorage.getItem('user'));
+    }
+
     $scope.post = {};
     $scope.inscr = {};
     $scope.post.type = 'touristique';
@@ -68,7 +72,8 @@ app.controller('mobileController', function($scope, $http) {
                     if($scope.error == 'inscrit'){
                         $scope.user.email = $scope.inscr.email;
                         $scope.user.ges = 0;
-                        $(location).attr('href',"#home" );
+                        localStorage.setItem('user', JSON.stringify($scope.user));
+                        $.mobile.changePage('#home');
                     }
 
                 }).error(function(error){
@@ -96,7 +101,6 @@ app.controller('mobileController', function($scope, $http) {
             headers : {'Content-Type': 'application/x-www-form-urlencoded'}
 
         }).success(function(res){
-
             $scope.error = res.error;
 
             if(!$scope.error){
@@ -104,7 +108,9 @@ app.controller('mobileController', function($scope, $http) {
                 $scope.user = {};
                 $scope.user.email = res.email;
                 $scope.user.ges = res.ges;
-                $(location).attr('href',"#home" );
+
+                localStorage.setItem('user', JSON.stringify($scope.user));
+                $.mobile.changePage('#home');
             }
 
         }).error(function(error){
