@@ -304,7 +304,6 @@ $(document).on('pageshow', '#parcours', function (event) {
                     // CENTRAGE DE LA CARTE SUR LE NOUVEAU MARKER + ZOOM
 
                     var mapOpt = {
-                        zoom: 15,
                         center: locationPlace
                     };
                     map.setOptions(mapOpt);
