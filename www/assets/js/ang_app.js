@@ -57,7 +57,7 @@ app.controller('mobileController', function($scope, $http) {
 
                 $http({
                     method : 'POST',
-                    url : url_base + '/em_project/ajax/inscription',
+                    url : url_base + '/ajax/inscription',
                     data: postData,
                     headers : {'Content-Type': 'application/x-www-form-urlencoded'}
 
