@@ -160,10 +160,17 @@ h1 img {
 
 }
 
+
+#parcours .ui-content {
+
+    padding: 0;
+
+}
+
 #map-canvas {
     position:absolute;
     width:100%;
-    height:82%;
+    height:86%;
 
 }
 
@@ -258,3 +265,35 @@ h1 img {
 }
 
 
+
+#bilanSubmit .ui-content {
+
+    padding: 0;
+
+}
+
+#map-bilanS {
+    position:absolute;
+    width:100%;
+    height:35%;
+
+}
+
+#contentBilanS {
+    top:45%;
+    position: absolute;
+    width: 90%;
+    padding-left: 5%;
+}
+
+div#bilanSubmit.ui-page.ui-page-theme-a.ui-page-active div#contentBilanS div.ui-block-a.infoBilan {
+  border: 1px solid #CECFD1;
+  height: 5em;
+  color: #7DD1EB;
+}
+
+div#bilanSubmit.ui-page.ui-page-theme-a.ui-page-active div#contentBilanS div.ui-block-b.infoBilan {
+    border: 1px solid #CECFD1;
+    height: 5em;
+    color: #7DD1EB;
+}

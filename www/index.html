@@ -238,7 +238,7 @@
 
     <!-- **************************** PAGE AFFICHAGE PARCOURS PROPOSITION **************************** -->
     <div data-role="page" data-theme="a" id="parcours">
-        <div data-role="header" data-position="inline">
+        <div data-role="header"  data-position="fixed">
             <a href="#submit" data-ajax="false" class="ui-btn ui-icon-delete ui-btn-icon-notext" id="backSubmit"></a>
             <h1><img src="assets/img/headLogo.png" alt=""/>Go Mobility</h1>
         </div>
@@ -247,7 +247,7 @@
         <script src="assets/js/mapsubmit.js"></script>
 
 
-        <div data-role="content" data-theme="a" class="content" id="map-canvas">
+        <div data-role="content" data-theme="a" class="content">
 
 
             <!--
@@ -270,6 +270,18 @@
 
         -->
 
+            <div id="map-canvas"></div>
+
+            <div data-role="popup" id="popupSearch" data-overlay-theme="b" data-theme="b" data-dismissible="false" style="max-width:400px;">
+                <div data-role="header" data-theme="a">
+                    <h2>Félicitation !</h2>
+                </div>
+                <div role="main" class="ui-content">
+                    <h3 class="ui-title">Vous êtes arrivé à destination, découvrez votre bilan et confirmez votre participation dès maintenant !</h3>
+                    <a href="#" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b" data-rel="back">Continuer</a>
+                    <a href="#bilanSubmit" id="bilanOK" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b" data-transition="flow">Accéder au bilan</a>
+                </div>
+            </div>
         </div>
 
 
@@ -288,16 +300,6 @@
 
         </div>
 
-        <div data-role="popup" id="popupSearch" data-overlay-theme="b" data-theme="b" data-dismissible="false" style="max-width:400px;">
-            <div data-role="header" data-theme="a">
-                <h1>Félicitation !</h1>
-            </div>
-            <div role="main" class="ui-content">
-                <h3 class="ui-title">Vous êtes arrivé à destination, découvrez votre bilan et confirmez votre participation dès maintenant !</h3>
-                <a href="#" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b" data-rel="back">Continuer</a>
-                <a href="#bilanSearch" id="bilanOK" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b" data-transition="flow">Accéder au bilan</a>
-            </div>
-        </div>
 
     </div>
     <!-- **************************** FIN PAGE AFFICHAGE PARCOURS PROPOSITION **************************** -->
@@ -623,19 +625,73 @@
 
 
 
-    <!-- **************************** PAGE CONNEXION EMAIL **************************** -->
-    <div data-role="page" data-theme="a" id="bilanSearch">
+    <!-- **************************** PAGE BILAN SUBMIT **************************** -->
+    <div data-role="page" data-theme="a" id="bilanSubmit">
         <div data-role="header" data-position="inline">
             <a href="#home" data-transition="slide" data-direction="reverse" class="ui-btn ui-icon-delete ui-btn-icon-notext"></a>
             <h1><img src="assets/img/headLogo.png" alt=""/>Go Mobility</h1>
         </div>
         <div data-role="content" data-theme="a" class="content">
 
-            <p>Bilan</p>
+            <div id="map-bilanS"></div>
+
+
+                <div id="contentBilanS">
+                    <form>
+
+                    <div  class="borderBtm">
+                        <div class="ui-grid-a textCenter">
+
+                            <div class="ui-block-a infoBilan"><p id="bilanSearchT"></p></div>
+                            <div class="ui-block-b infoBilan"><p id="bilanSearchCal"></p></div>
+                        </div><!-- /grid-a -->
+
+                        <div class="ui-grid-a textCenter">
+                            <div class="ui-block-a infoBilan"><p id="bilanSearchKm"></p></div>
+                            <div class="ui-block-b infoBilan"><p id="bilanSearchGes"></p></div>
+                        </div>
+                    </div>
+
+
+
+                    <h3 class="textCenter">VOOTRE PARCOURS EST DE TYPE </h3>
+
+                    <fieldset data-role="controlgroup" data-type="horizontal" class="textCenter borderBtm">
+
+                        <input name="typeBilanS" id="typeBilanS1" value="touristique" checked="checked" type="radio">
+                        <label for="typeBilanS1">Touristique</label>
+                        <input name="typeBilanSS" id="typeBilanS2" value="sport" type="radio">
+                        <label for="typeBilanS2">Sportif</label>
+                        <input name="typeBilanS" id="typeBilanS3" value="work" type="radio">
+                        <label for="typeBilanS3">Go to work</label>
+                    </fieldset>
+
+                        <!--
+                    <div class="borderBtm">
+
+                        <h3 class="textCenter">VOTRE AVIS</h3>
+
+                        <select name="noteBilanS" id="noteBilanS">
+                            <option value="">Votre note</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+
+                    </div>
+                    -->
+
+                    <a href="#home" id="submitBilanS" data-transition="slide"  class="ui-btn" >Partager mes performances</a>
+
+                    </form>
+                </div>
 
         </div>
     </div>
-    <!-- **************************** FIN PAGE CONNEXION EMAIL **************************** -->
+    <!-- **************************** FIN PAGE BILAN SUBMIT **************************** -->
+
 
 
 

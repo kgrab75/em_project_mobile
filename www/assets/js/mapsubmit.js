@@ -1,30 +1,28 @@
 
 var markerImg = "assets/img/location.png";
 var markerA = "assets/img/markerA.png";
-var arrivee, transport, typeParcours, directionsService, directionsDisplay, distanceTotal, distanceDirection;
+var arrivee, transport, typeParcours, directionsService, directionsDisplay, distanceTotal, distanceDirection, distanceM, locationPlace;
 
 var markersArray = [];
 var i = 0;
 var positionTimer;
 var timer =  0;
 var distanceM2;
+var googleTime;
+var origin;
 
 
 
 
-// Stop géolocalisation + alert en cas d'arret du parcours
+// Alert si on quitte le parcours
 $("#backSubmit").click(function(){
-    alert("Êtes-vous sûr de vouloir quitter le parcours ?");
-    // Stop géolocalisation
+
+    confirm("Êtes-vous sûr de vouloir quitter le parcours ?");
+
     navigator.geolocation.clearWatch(positionTimer);
 
 });
-// SI POPUP ARRIVEE VALIDE STOP GEOLOCATION
-$("#bilanOK").click(function(){
-    // Stop géolocalisation
-    navigator.geolocation.clearWatch(positionTimer);
 
-});
 
 
 
@@ -77,7 +75,7 @@ $(document).on('pageshow', '#parcours', function (event) {
     map = new google.maps.Map(
         mapContainer[ 0 ],
         {
-            zoom: 10,
+            zoom: 7,
             center: new google.maps.LatLng(
                 48.877547, 2.357875
             ),
@@ -183,7 +181,7 @@ $(document).on('pageshow', '#parcours', function (event) {
                     "Initial Position"
                 );
 
-                var origin = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+                origin = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 
 
 
@@ -211,6 +209,9 @@ $(document).on('pageshow', '#parcours', function (event) {
                             //var iconDirection = result.routes[0].legs[0].steps[0].maneuver;
                             distanceTotal = result.routes[0].legs[0].distance.text;
                             distanceM = result.routes[0].legs[0].distance.value;
+
+
+                            googleTime = result.routes[0].legs[0].duration.value;
  /*
                              //AFFICHAGE DES ICONES EN FONCTION DE DU PROCHAIN CHANGEMENT ITINERAIRE
                              if( iconDirection == "turn-sharp-left" || iconDirection == "roundabout-left" || iconDirection == "uturn-left" || iconDirection == "turn-slight-left" || iconDirection == "turn-left" || iconDirection == "fork-left" || iconDirection == "ramp-left" || iconDirection == "keep-left" ){
@@ -302,29 +303,24 @@ $(document).on('pageshow', '#parcours', function (event) {
 
         positionTimer = navigator.geolocation.watchPosition(
             function( position ){
-                var locationPlace = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+                locationPlace = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
                 function center(){
                     // CENTRAGE DE LA CARTE SUR LE NOUVEAU MARKER + ZOOM
 
                     var mapOpt = {
+                        zoom: 17,
                         center: locationPlace
                     };
                     map.setOptions(mapOpt);
 
                 }
 
-
-
                 $("#centerBtn").click(function(){
                     center();
                 });
                 // Zoom et centrage sur le marker
                 if(timer == 0){
-                    var mapOpt = {
-                        zoom: 17,
-                        center: locationPlace
-                    };
-                    map.setOptions(mapOpt);
+                    center();
                 }
 
                 timer = timer+5;
@@ -343,7 +339,7 @@ $(document).on('pageshow', '#parcours', function (event) {
                 );
 
 
-                // CREATION D'UN DEUXIEME SERVICE DEDIRECITON POUR RECUPERER LES DISTANCES SUITE UPDATE MARKER
+                // MISE A JOUR DE L'ITINERAIRE
 
                 travel2 = {
                     origin : locationPlace,
@@ -356,6 +352,8 @@ $(document).on('pageshow', '#parcours', function (event) {
                 directionsService.route(travel2, function(response, status) {
                     if (status == google.maps.DirectionsStatus.OK) {
                         directionsDisplay.setDirections(response);
+
+
 
                         var distanceTotal2 = response.routes[0].legs[0].distance.text;
                         distanceM2 = response.routes[0].legs[0].distance.value;
@@ -384,7 +382,8 @@ $(document).on('pageshow', '#parcours', function (event) {
                     }
 
                     i++;
-                    if(i == 30){
+                    // Remise à 0 de i tous les x (* 5s) pour mise à jour des centre d'intêrets
+                    if(i == 6){
 
                         i = 0;
                     }
@@ -398,7 +397,6 @@ $(document).on('pageshow', '#parcours', function (event) {
                     $('#popupSearch').popup('open');
 
                  }
-
 
                 // AFFICHAGE DES POINTS D'INTERETS
 
