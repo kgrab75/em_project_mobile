@@ -284,20 +284,19 @@ h1 img {
 
 
 
-#bilanSubmit .ui-content {
-
+#bilanSubmit .ui-content, #parcoursSearch .ui-content {
     padding: 0;
 
 }
 
-#map-bilanS {
+#map-bilanS, #mapDetails {
     position:absolute;
     width:100%;
     height:35%;
 
 }
 
-#contentBilanS {
+#contentBilanS, #contentMapDetails {
     top:45%;
     position: absolute;
     width: 90%;
@@ -315,3 +314,4 @@ div#bilanSubmit.ui-page.ui-page-theme-a.ui-page-active div#contentBilanS div.ui-
     height: 5em;
     color: #7DD1EB;
 }
+

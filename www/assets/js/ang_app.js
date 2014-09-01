@@ -43,6 +43,7 @@ app.controller('mobileController', function($scope, $http) {
 
         }).success(function(res){
             $scope.resultats = res;
+            getDataMap(res);
         }).error(function(error){
             console.log(error);
         });
@@ -166,5 +167,23 @@ app.controller('mobileController', function($scope, $http) {
         $scope.resultat = resultat;
         $.mobile.changePage('#mapsearch');
     };
+
+
+    $scope.timeConvertion = function(tpsMin){
+        var dureeH = Math.floor(tpsMin / 60);
+
+        if(dureeH !==0){
+            if(tpsMin < 10){
+                dureeHM = dureeH + "h0" + tpsMin ;
+            }else {
+                dureeHM = dureeH + "h" + tpsMin ;
+            }
+
+        } else {
+            dureeHM = tpsMin + "m";
+        }
+
+        return dureeHM;
+    }
 
 });

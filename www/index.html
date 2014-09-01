@@ -693,52 +693,45 @@
 
         <div data-role="content" data-theme="a" class="content">
 
-            <h3 class="textCenter">Itinéraire</h3>
 
-            <div class="map textCenter ui-grid-a">
-                <div class="ui-block-a" style="width: 15%;">Son</div>
-                <div class="ui-block-b textCenter" style="width: 70%;" id="mapSearch-canvas" ></div>
-                <div class="ui-block-c" style="width: 15%;">Pause</div>
+            <script src="assets/js/mapdetails.js"></script>
+
+            <div id="mapDetails"></div>
+
+            <div id="contentMapDetails">
+
+                <div>
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>id</th>
+                            <th>GES</th>
+                            <th>Distance</th>
+                            <th>Durée</th>
+                            <th>Transport</th>
+                            <th>Difficulty</th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        <tr ng-repeat="(keyData, resultat) in resultats" ng-click="gotosearch(resultat)">
+                            <td>{{keyData+1}}</td>
+                            <td>{{resultat.ges}}</td>
+                            <td>{{resultat.distance}}</td>
+                            <td>{{timeConvertion(resultat.duree)}}</td>
+                            <td ng-if="resultat.transport == ''"></td>
+                            <td>{{resultat.transport}}</td>
+                            <td>{{resultat.difficulty}}</td>
+
+                        </tr>
+                        </tbody>
+
+                    </table>
+                </div>
             </div>
-            <div class="infosMap ui-grid-a textCenter">
-                <div class="ui-block-a" style="width: 15%;"></div>
-                <div class="ui-block-b" id="dirParcoursSearch"></div>
-                <div class="ui-block-c" style="width: 15%;"></div>
-
-            </div>
-
-            <div id="mapSearch-directions"></div>
 
         </div>
 
-        <div>
-            <table>
-                <thead>
-                    <tr>
-                        <th>id</th>
-                        <th>GES</th>
-                        <th>Distance</th>
-                        <th>Durée</th>
-                        <th>Transport</th>
-                        <th>Difficulty</th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                    <tr ng-repeat="(keyData, resultat) in resultats" ng-click="gotosearch(resultat)">
-                        <th>{{keyData+1}}</th>
-                        <th>{{resultat.ges}}</th>
-                        <th>{{resultat.distance}}</th>
-                        <th>{{resultat.duree}}</th>
-                        <th ng-if="resultat.transport == ''"></th>
-                        <th>{{resultat.transport}}</th>
-                        <th>{{resultat.difficulty}}</th>
-
-                    </tr>
-                </tbody>
-
-            </table>
-        </div>
 
     </div>
     <!-- **************************** FIN PAGE RECHERCHE PARCOURS SEARCH **************************** -->
@@ -756,6 +749,8 @@
 
 
         <h3 class="textCenter">Détails du parcours</h3>
+
+
         {{resultat.start}}<br/>
         {{resultat.arrival}}
         {{resultat.distance}}
