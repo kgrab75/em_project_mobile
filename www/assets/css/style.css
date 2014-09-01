@@ -315,6 +315,7 @@ div#bilanSubmit.ui-page.ui-page-theme-a.ui-page-active div#contentBilanS div.ui-
     color: #7DD1EB;
 }
 
+
 table#tableResult tbody tr.itemSearch td{
     vertical-align: middle;
     text-align: center;
@@ -350,5 +351,11 @@ table#tableResult tbody tr.itemSearch td table tr.transport{
 
 table#tableResult tbody tr.itemSearch td table tr.difficulty{
     font-size: 0.8em;
+}
+
+
+.radio-bilan{
+    padding-left: 2px !important;
+    padding-right: 2px !important;
 }
 

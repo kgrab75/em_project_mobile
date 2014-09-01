@@ -138,7 +138,7 @@
         </div>
         <div data-role="content" data-theme="a" class="content">
 
-            <h2 class="textCenter" ng-if="user.email">Bienvenue {{user.email}}</h2>
+            <h4 class="textCenter" ng-if="user.email">Bienvenue {{user.email}}</h4>
 
             <h3 class="textCenter">L'ardèche éco-responsable</h3>
 
@@ -156,11 +156,13 @@
                 </a>
             </div>
 
-            <p>Déjà</p>
-            <div class="ges">
-                <p>{{user.ges}} g</p>
-            </div>
-            <p>économisé grâce à vous</p>
+            <span>
+                Déjà
+                <span class="ges">
+                    <span style="display: inline-block;">{{user.ges}} g de CO<sub>2</sub></span>
+                </span>
+                économisés grâce à vous
+            </span>
 
 
         </div>
@@ -197,7 +199,7 @@
                     <option value="gastronomique">Gastronomique</option>
                     <option value="nature">Nature</option>
                     <option value="historique">Historique **</option>
-                    <option value="enonomique">Economique **</option>
+                    <option value="economique">Economique **</option>
                     <option value="sport">Sportif **</option>
                     <option value="work">Go to work **</option>
                 </select>
@@ -322,11 +324,11 @@
                     <fieldset data-role="controlgroup" data-type="horizontal" class="textCenter borderBtm">
 
                         <input name="typeBilanS" id="typeBilanS1" value="touristique" checked="checked" type="radio" ng-model="bilan.type">
-                        <label for="typeBilanS1">Touristique</label>
+                        <label class="radio-bilan" for="typeBilanS1">Touristique</label>
                         <input name="typeBilanSS" id="typeBilanS2" value="sport" type="radio" ng-model="bilan.type">
-                        <label for="typeBilanS2">Sportif</label>
+                        <label class="radio-bilan" for="typeBilanS2">Sportif</label>
                         <input name="typeBilanS" id="typeBilanS3" value="work" type="radio" ng-model="bilan.type">
-                        <label for="typeBilanS3">Go to work</label>
+                        <label class="radio-bilan" for="typeBilanS3">Go to work</label>
                     </fieldset>
 
                     <!--
@@ -479,7 +481,7 @@
 
                 <fieldset data-role="controlgroup" data-theme="a" data-type="horizontal">
 
-                    <input type="radio" name="typeParcours" id="tt1" value="touristique" checked="checked"">
+                    <input type="radio" name="typeParcours" id="tt1" value="touristique" checked="checked">
                     <label for="tt1"><i class="fa fa-university fa-2x"></i><br/><span class="xxsText">Touristique</span></label>
 
                     <input type="radio" name="typeParcours" id="tt2" value="sportif">
