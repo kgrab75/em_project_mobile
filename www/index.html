@@ -317,15 +317,15 @@
 
 
 
-                    <h3 class="textCenter">VOOTRE PARCOURS EST DE TYPE </h3>
+                    <h3 class="textCenter">VOTRE PARCOURS ETAIT DE TYPE </h3>
 
                     <fieldset data-role="controlgroup" data-type="horizontal" class="textCenter borderBtm">
 
-                        <input name="typeBilanS" id="typeBilanS1" value="touristique" checked="checked" type="radio">
+                        <input name="typeBilanS" id="typeBilanS1" value="touristique" checked="checked" type="radio" ng-model="bilan.type">
                         <label for="typeBilanS1">Touristique</label>
-                        <input name="typeBilanSS" id="typeBilanS2" value="sport" type="radio">
+                        <input name="typeBilanSS" id="typeBilanS2" value="sport" type="radio" ng-model="bilan.type">
                         <label for="typeBilanS2">Sportif</label>
-                        <input name="typeBilanS" id="typeBilanS3" value="work" type="radio">
+                        <input name="typeBilanS" id="typeBilanS3" value="work" type="radio" ng-model="bilan.type">
                         <label for="typeBilanS3">Go to work</label>
                     </fieldset>
 
@@ -346,7 +346,7 @@
                 </div>
                 -->
 
-                    <a href="#home" id="submitBilanS" data-transition="slide"  class="ui-btn" >Partager mes performances</a>
+                    <a href="#home" id="submitBilanS" data-transition="slide"  class="ui-btn" ng-click="save()" >Partager mes performances</a>
 
                 </form>
             </div>
@@ -359,7 +359,7 @@
 
     <!-- **************************** PAGE RECHERCHE TOURISTIQUE **************************** -->
 
-    <div data-role="page" data-theme="a" id="searchTourisme">
+    <div data-role="page" data-theme="a" id="searchTourisme" ng-init="post.type='touristique'">
         <div data-role="header" data-position="inline">
             <a href="#home" data-transition="slide" data-direction="reverse" class="ui-btn ui-icon-delete ui-btn-icon-notext"></a>
             <h1><img src="assets/img/headLogo.png" alt=""/>Go Mobility</h1>
@@ -466,7 +466,7 @@
 
 
 
-                <a href="#parcoursSearch" id="submitTourisme" data-transition="slide"  class="ui-btn" ng-click="search()">Rechercher</a>
+                <a href="#parcoursSearch" id="submitTourisme" data-transition="slide"  class="ui-btn" ng-click="search('touristique')">Rechercher</a>
 
             </form>
 
@@ -479,13 +479,13 @@
 
                 <fieldset data-role="controlgroup" data-theme="a" data-type="horizontal">
 
-                    <input type="radio" name="typeParcours" id="tt1" value="touristique" checked="checked" ng-model="post.type">
+                    <input type="radio" name="typeParcours" id="tt1" value="touristique" checked="checked"">
                     <label for="tt1"><i class="fa fa-university fa-2x"></i><br/><span class="xxsText">Touristique</span></label>
 
-                    <input type="radio" name="typeParcours" id="tt2" value="sportif" ng-model="post.type">
+                    <input type="radio" name="typeParcours" id="tt2" value="sportif">
                     <label for="tt2"><i class="fa fa-child fa-2x"></i><br/><span class="xxsText">Sportif</span></label>
 
-                    <input type="radio" name="typeParcours" id="tt3" value="work" ng-model="post.type">
+                    <input type="radio" name="typeParcours" id="tt3" value="work">
                     <label for="tt3"><i class="fa fa-suitcase fa-2x"></i><br/><span class="xxsText">Go to work</span></label>
 
                 </fieldset>
@@ -564,7 +564,7 @@
 
 
 
-                <a href="#parcoursSearch" id="submitSport" data-transition="slide"  class="ui-btn" ng-click="search()">Rechercher</a>
+                <a href="#parcoursSearch" id="submitSport" data-transition="slide"  class="ui-btn" ng-click="search('sportif')">Rechercher</a>
 
             </form>
 
@@ -577,13 +577,13 @@
 
                 <fieldset data-role="controlgroup" data-theme="a" data-type="horizontal">
 
-                    <input type="radio" name="typeParcours" id="ts1" value="touristique" ng-model="post.type">
+                    <input type="radio" name="typeParcours" id="ts1" value="touristique">
                     <label for="ts1"><i class="fa fa-university fa-2x"></i><br/><span class="xxsText">Touristique</span></label>
 
-                    <input type="radio" name="typeParcours" id="ts2" value="sportif" ng-model="post.type">
+                    <input type="radio" name="typeParcours" id="ts2" value="sportif">
                     <label for="ts2"><i class="fa fa-child fa-2x"></i><br/><span class="xxsText">Sportif</span></label>
 
-                    <input type="radio" name="typeParcours" id="ts3" value="work" ng-model="post.type">
+                    <input type="radio" name="typeParcours" id="ts3" value="work">
                     <label for="ts3"><i class="fa fa-suitcase fa-2x"></i><br/><span class="xxsText">Go to work</span></label>
 
                 </fieldset>
@@ -654,13 +654,13 @@
 
                 <fieldset data-role="controlgroup" data-theme="a" data-type="horizontal">
 
-                    <input type="radio" name="typeParcours" id="tw1" value="touristique"  ng-model="post.type">
+                    <input type="radio" name="typeParcours" id="tw1" value="touristique" >
                     <label for="tw1"><i class="fa fa-university fa-2x"></i><br/><span class="xxsText">Touristique</span></label>
 
-                    <input type="radio" name="typeParcours" id="tw2" value="sportif" ng-model="post.type">
+                    <input type="radio" name="typeParcours" id="tw2" value="sportif">
                     <label for="tw2"><i class="fa fa-child fa-2x"></i><br/><span class="xxsText">Sportif</span></label>
 
-                    <input type="radio" name="typeParcours" id="tw3" value="work" ng-model="post.type">
+                    <input type="radio" name="typeParcours" id="tw3" value="work">
                     <label for="tw3"><i class="fa fa-suitcase fa-2x"></i><br/><span class="xxsText">Go to work</span></label>
 
                 </fieldset>
