@@ -1,9 +1,9 @@
 //Define an angular module for our app
 var app = angular.module('mobile', ['ui-rangeSlider', 'ngTouch']);
 
-app.controller('mobileController', function($scope, $http) {
+app.controller('mobileController', function($scope, $http, $timeout) {
 
-    url_base = 'http://192.168.1.23/em_project';
+    url_base = 'http://127.0.0.1/em_project';
 
     if(localStorage.getItem('user')){
         $scope.user = JSON.parse(localStorage.getItem('user'));
@@ -94,9 +94,11 @@ app.controller('mobileController', function($scope, $http) {
                             console.log(latlng);
                             console.log($scope.user.latlong);
                             console.log(results[0].formatted_address);
-                            $scope.user.workaddress = results[0].formatted_address;
 
-                            localStorage.setItem('user', JSON.stringify($scope.user));
+                            $timeout(function(){
+                                $scope.user.workaddress = results[0].formatted_address;
+                                localStorage.setItem('user', JSON.stringify($scope.user));
+                            },0);
                         });
                         $.mobile.changePage('#home');
                     }
@@ -148,9 +150,11 @@ app.controller('mobileController', function($scope, $http) {
                     console.log(latlng);
                     console.log($scope.user.latlong);
                     console.log(results[0].formatted_address);
-                    $scope.user.workaddress = results[0].formatted_address;
 
-                    localStorage.setItem('user', JSON.stringify($scope.user));
+                    $timeout(function(){
+                        $scope.user.workaddress = results[0].formatted_address;
+                        localStorage.setItem('user', JSON.stringify($scope.user));
+                    },0);
                 });
 
                 $.mobile.changePage('#home');
@@ -187,13 +191,10 @@ app.controller('mobileController', function($scope, $http) {
 
 
             localUser = JSON.parse(localStorage.getItem('user'));
-
-            $scope.user.ges = localUser.ges + Math.round(bilan.ges);
-
             localUser.ges = localUser.ges + Math.round(bilan.ges);
             localStorage.setItem('user', JSON.stringify(localUser));
 
-
+            $scope.user.ges = localUser.ges + Math.round(bilan.ges)
 
         }).error(function(error){
             console.log(error);
