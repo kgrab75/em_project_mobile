@@ -3,7 +3,7 @@ var app = angular.module('mobile', ['ui-rangeSlider', 'ngTouch']);
 
 app.controller('mobileController', function($scope, $http) {
 
-    url_base = 'http://gomobility:8888';
+    url_base = 'http://192.168.1.23/em_project';
 
     if(localStorage.getItem('user')){
         $scope.user = JSON.parse(localStorage.getItem('user'));
@@ -31,7 +31,9 @@ app.controller('mobileController', function($scope, $http) {
         console.log($scope.post);
     };
 
-    $scope.search = function() {
+    $scope.search = function(type) {
+
+        $scope.post.type = type;
 
         var postData = 'mySearch='+JSON.stringify($scope.post);
 
@@ -169,6 +171,7 @@ app.controller('mobileController', function($scope, $http) {
     };
 
 
+
     $scope.timeConvertion = function(tpsMin){
         var dureeH = Math.floor(tpsMin / 60);
 
@@ -184,6 +187,38 @@ app.controller('mobileController', function($scope, $http) {
         }
 
         return dureeHM;
-    }
+    };
+
+    $scope.save = function(){
+        bilan = JSON.parse(localStorage.getItem('bilan'));
+        bilan.type = $scope.bilan.type;
+        bilan.email = JSON.parse(localStorage.getItem('user')).email;
+
+        var postData = 'myForm='+JSON.stringify(bilan);
+
+        $http({
+            method : 'POST',
+            url : url_base + '/ajax/savebilan',
+            data: postData,
+            headers : {'Content-Type': 'application/x-www-form-urlencoded'}
+
+        }).success(function(res){
+
+
+
+            localUser = JSON.parse(localStorage.getItem('user'));
+
+            $scope.user.ges = localUser.ges + Math.round(bilan.ges);
+
+            localUser.ges = localUser.ges + Math.round(bilan.ges);
+            localStorage.setItem('user', JSON.stringify(localUser));
+
+
+
+        }).error(function(error){
+            console.log(error);
+        });
+    };
+
 
 });

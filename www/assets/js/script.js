@@ -235,6 +235,8 @@ $(document).bind('pageinit', function(event) {
             var distanceKm = distanceM / 1000.0;
             var ges = totalGes(distanceKm);
 
+
+
             // CALCUL CALORIES (ref : 2,5Kcal/min)
             var cal = timerM * 2.5;
 
@@ -244,7 +246,20 @@ $(document).bind('pageinit', function(event) {
             $("#bilanSearchGes").html("<i class='fa fa-recycle fa-2x'></i> " + ges + " CO<sup>2</sup>");
             $("#bilanSearchCal").html("<i class='fa fa-tachometer fa-2x'></i> " + cal + " Kcal");
 
+            bilan = {
+                'start' : origin.k + ', ' + origin.B,
+                'arrival' : locationPlace.k + ', ' + locationPlace.B,
+                'ges' : distanceKm * 69.81,
+                'distance' : distanceM,
+                'transport' : transport,
+                'difficulty' : 1,
+                'sous_type' : document.getElementById('typeParcours').value,
+                'payant' : 0,
+                'duree' : googleTime/60
 
+            }
+
+            localStorage.setItem('bilan', JSON.stringify(bilan));
 
         });
 
