@@ -701,27 +701,49 @@
             <div id="contentMapDetails">
 
                 <div>
-                    <table>
+                    <table id="tableResult" width="100%">
                         <thead>
-                        <tr>
-                            <th>id</th>
-                            <th>GES</th>
-                            <th>Distance</th>
-                            <th>Durée</th>
-                            <th>Transport</th>
-                            <th>Difficulty</th>
+                        <tr style="border-bottom: 1px solid black;">
+                            <th width="15%">id</th>
+                            <th width="20%">GES</th>
+                            <th width="20%">Distance</th>
+                            <th width="20%">Durée</th>
+                            <th width="25%"></th>
+
                         </tr>
                         </thead>
 
                         <tbody>
-                        <tr ng-repeat="(keyData, resultat) in resultats" ng-click="gotosearch(resultat)">
-                            <td>{{keyData+1}}</td>
-                            <td>{{resultat.ges}}</td>
-                            <td>{{resultat.distance}}</td>
-                            <td>{{timeConvertion(resultat.duree)}}</td>
-                            <td ng-if="resultat.transport == ''"></td>
-                            <td>{{resultat.transport}}</td>
-                            <td>{{resultat.difficulty}}</td>
+
+                        <tr ng-repeat="(keyData, resultat) in resultats" ng-click="gotosearch(resultat)"  class="itemSearch">
+
+                            <td class="itemNumber"><p>{{keyData+1}}</p></td>
+
+                            <td class="itemGes">{{gesConvertion(resultat.ges)}}  CO<sup>2</sup> </td>
+
+                            <td class="itemDistance">{{kmConvertion(resultat.distance)}}</td>
+
+                            <td class="itemDuree">{{timeConvertion(resultat.duree)}}</td>
+
+
+                            <td>
+                                <table width="100%">
+                                    <tr class="transport">
+
+                                        <td ng-if="resultat.transport == 'WALKING'"><i class="fa fa-male fa-2x"></i></td>
+                                        <td ng-if="resultat.transport == 'BICYCLING'"><i class="fa fa-bicycle fa-2x"></i></td>
+                                        <td ng-if="resultat.transport == 'TRANSIT'"><i class="fa fa-bus fa-2x"></i></td>
+                                        <td ng-if="resultat.transport == 'DRIVING'"><i class="fa fa-car fa-2x"></i></td>
+                                    </tr>
+                                    <tr class="difficulty">
+
+                                        <td ng-if="resultat.difficulty == 1">Niveau : Facile</td>
+                                        <td ng-if="resultat.difficulty == 2">Niveau : Moyen</td>
+                                        <td ng-if="resultat.difficulty == 3">Niveau : Difficile</td>
+
+                                    </tr>
+                                </table>
+                            </td>
 
                         </tr>
                         </tbody>
@@ -748,33 +770,41 @@
         </div>
 
 
-        <h3 class="textCenter">Détails du parcours</h3>
+
+        <h3 class="textCenter ">ON VA OÙ ?</h3>
+
+        <div class="textCenter">
+            {{resultat.arrivalAddress}}
+        </div>
 
 
-        {{resultat.start}}<br/>
-        {{resultat.arrival}}
-        {{resultat.distance}}
-        {{resultat.duree}}
-        {{resultat.transport}}
-        {{resultat.ges}}
-        {{resultat.sous_type}}
-        {{resultat.payant}}
-        {{resultat.difficulty}}
+
+        <h3 class="textCenter borderBtm">TYPE DE PARCOURS</h3>
+
+        <div class="textCenter">
+             {{resultat.sous_type}}
+        </div>
+
+        <h3 class="textCenter borderBtm">MODE DE TRANSPORT</h3>
+
+
+        <div class="textCenter" ng-if="resultat.transport == 'WALKING'"><i class="fa fa-male fa-2x"></i> Martche à pied</div>
+        <div class="textCenter"  ng-if="resultat.transport == 'BICYCLING'"><i class="fa fa-bicycle fa-2x"></i> Vélo</div>
+        <div class="textCenter"  ng-if="resultat.transport == 'TRANSIT'"><i class="fa fa-bus fa-2x"></i> Transport en commun</div>
+        <div class="textCenter"  ng-if="resultat.transport == 'DRIVING'"><i class="fa fa-car fa-2x"></i> Covoiturage</div>
+
+
 
         <form>
-
-        </form>
 
         <input type="hidden" name="departPerso" value="{{resultat.start}}">
         <input type="hidden" name="arrivee" value="{{resultat.arrival}}">
         <input type="hidden" name="typeParcours" value="{{resultat.sous_type}}">
         <input type="hidden" name="transport" value="{{resultat.transport}}">
 
-
-
         <a href="#parcours" id="submitSearch" data-transition="slide"  class="ui-btn" >C'est parti !</a>
 
-
+        </form>
 
 
 

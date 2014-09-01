@@ -40,7 +40,7 @@ $(document).bind('pageinit', function(event) {
 
 
 
-    var input, options;
+    var input, options, coord_arrivee, startMarker, arrivalMarker;
 
 
     var activePage = $(event.target);
@@ -187,7 +187,8 @@ $(document).bind('pageinit', function(event) {
             console.log("DEPART : ");
             console.log(origin);
             console.log("ARRIVEE : ");
-            console.log(locationPlace);
+            console.log(arrivee);
+            console.log(transport);
             console.log("Temps google : " + googleTime);
 
 
@@ -210,17 +211,34 @@ $(document).bind('pageinit', function(event) {
 
                 var request = {
                     origin:origin,
-                    destination:locationPlace,
-                    travelMode: google.maps.TravelMode.DRIVING
+                    destination:arrivee,
+                    travelMode: google.maps.TravelMode[transport]
                 };
                 directionsServiceBilan.route(request, function(response, status) {
                     if (status == google.maps.DirectionsStatus.OK) {
                         directionsBilan.setDirections(response);
                     }
                 });
+
+                var geocoder = new google.maps.Geocoder();
+
+                geocoder.geocode({
+                    "address": arrivee
+                }, function(results, status) {
+
+                    if( status == google.maps.GeocoderStatus.OK ) {
+                        coord_arrivee = results[0].geometry.location.B + ', ' + results[0].geometry.location.k;
+                    }
+                    else
+                    {
+                        console.log('erreur dans l\'adresse');
+                    }
+                });
+
             }
 
             initialize();
+
 
 
             /// ********************************* FIN REQUETE GOOGLE MAP *********************************

@@ -1,9 +1,9 @@
 //Define an angular module for our app
 var app = angular.module('mobile', ['ui-rangeSlider', 'ngTouch']);
 
-app.controller('mobileController', function($scope, $http) {
+app.controller('mobileController', function($scope, $http, $timeout) {
 
-    url_base = 'http://192.168.1.23/em_project';
+    url_base = 'http://gomobility:8888';
 
     if(localStorage.getItem('user')){
         $scope.user = JSON.parse(localStorage.getItem('user'));
@@ -188,6 +188,96 @@ app.controller('mobileController', function($scope, $http) {
 
         return dureeHM;
     };
+
+    $scope.gotosearch = function(resultat) {
+        $scope.resultat = resultat;
+
+        geocodeAdd($scope.resultat.start , 'start');
+        geocodeAdd($scope.resultat.arrival , 'arrival');
+
+        $.mobile.changePage('#mapsearch');
+    };
+
+
+
+    $scope.timeConvertion = function(tpsMin){
+        var dureeH = Math.floor(tpsMin / 60);
+        var dureeM = tpsMin % 60;
+        var dureeHM;
+
+        if(dureeH !==0){
+            if(dureeM < 10){
+                dureeHM = dureeH + "h0" + dureeM ;
+            }else {
+                dureeHM = dureeH + "h" + dureeM ;
+            }
+
+        } else {
+            dureeHM = dureeM + "m";
+        }
+
+        return dureeHM;
+    };
+
+
+    $scope.gesConvertion = function(totalM){
+
+        var GES = totalM/1000;
+
+        if(GES < 1000) {
+            GES = Math.round(GES*100)/100;
+            gesContent = GES + ' g';
+        } else {
+            GES = GES /1000;
+            GES = Math.round(GES*100)/100;
+            gesContent = GES + ' kg';
+        }
+
+        return gesContent;
+    };
+
+
+
+    $scope.kmConvertion = function(totalM){
+
+        var distanceKm = totalM / 1000;
+        var kmFormat = distanceKm.toFixed(1) + " km";
+        return kmFormat;
+    };
+
+
+    // format latLong : "lat, long"
+    geocodeAdd = function(latLong, point){
+
+        var addresse = "";
+        aLatLong = latLong.split(', ');
+        lat = aLatLong[0];
+        long = aLatLong[1];
+
+        var geocoder = new google.maps.Geocoder();
+        var latlng = new google.maps.LatLng(lat, long);
+
+        geocoder.geocode({
+            "latLng": latlng
+        }, function(results, status) {
+
+            $timeout(function(){
+                if(point == 'start'){
+
+                    $scope.resultat.startAddress = results[0].formatted_address;
+
+                }else{
+                    $scope.resultat.arrivalAddress = results[0].formatted_address;
+                }
+
+            },0);
+
+
+        });
+
+    };
+
+
 
     $scope.save = function(){
         bilan = JSON.parse(localStorage.getItem('bilan'));

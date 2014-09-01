@@ -315,3 +315,40 @@ div#bilanSubmit.ui-page.ui-page-theme-a.ui-page-active div#contentBilanS div.ui-
     color: #7DD1EB;
 }
 
+table#tableResult tbody tr.itemSearch td{
+    vertical-align: middle;
+    text-align: center;
+}
+
+
+table#tableResult tbody tr.itemSearch td.itemNumber p{
+    background-color: #7DD1EB;
+    text-align: center;
+    font-size: 2em;
+    border-radius: 100%;
+
+    padding-bottom: 0.2em;
+    font-family: ralewaysemibold, Arial, sans-serif;
+    color: #ffffff;
+}
+
+table#tableResult tbody tr.itemSearch td.itemGes{
+    color: #2ecc71;
+    font-family: ralewaysemibold, Arial, sans-serif;
+}
+
+
+table#tableResult tbody tr.itemSearch td table tr{
+    width: 100%;
+}
+
+table#tableResult tbody tr.itemSearch td table tr.transport{
+    background-color: #7DD1EB;
+    color:#ffffff;
+
+}
+
+table#tableResult tbody tr.itemSearch td table tr.difficulty{
+    font-size: 0.8em;
+}
+
